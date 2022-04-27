@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+const data = {"field":"usage_system", "cpu_no":"cpu-total", "host":"bucket"};
 // import Chart from 'chart.js';
 
 // core components
@@ -21,7 +22,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     console.log('ye krne wale');
-    this.http.post('http://localhost:3080/node/cpu', ["usage_system", "cpu-total", "system"]).subscribe(data => {
+    this.http.post<any>('http://localhost:3080/node/cpu', data).subscribe(data => {
       console.log(data);
     });
   }

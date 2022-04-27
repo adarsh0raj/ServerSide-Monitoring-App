@@ -56,34 +56,34 @@ where node_id = %d and application_name in %L;
 `;
 
 
-const CPU_Usage = `from(bucket:$3)
+const CPU_Usage = `from(bucket:%s)
 |> range(start: -5m)
-|> filter(fn: (r) => r._measurement == "cpu" and r._field == $1 and r.cpu == $2)`;
+|> filter(fn: (r) => r._measurement == "cpu" and r._field == %s and r.cpu == %s)`;
 
-const Memory = `from(bucket:$2)
+const Memory = `from(bucket:%s)
 |> range(start: -5m)
-|> filter(fn: (r) => r._measurement == "mem" and r._field == $1)`;
+|> filter(fn: (r) => r._measurement == "mem" and r._field == %s)`;
 
 
-const Disk_Usage = `from(bucket:$3)
+const Disk_Usage = `from(bucket:%s)
 |> range(start: -5m)
-|> filter(fn: (r) => r._measurement == "disk" and r._field == "used_percentage" and r.cpu == $1 and r.device = $2)`;
+|> filter(fn: (r) => r._measurement == "disk" and r._field == "used_percentage" and r.cpu == %s and r.device = %s)`;
 
-const SYS_Info = `from(bucket:$2)
+const SYS_Info = `from(bucket:%s)
 |> range(start: -5m)
-|> filter(fn: (r) => r._measurement == "system" and r._field == $1)`;
+|> filter(fn: (r) => r._measurement == "system" and r._field == %s)`;
 
-const Network = `from(bucket:$3)
+const Network = `from(bucket:%s)
 |> range(start: -5m)
-|> filter(fn: (r) => r._measurement == "net" and r._field == $1 and r.interface = $2)`;
+|> filter(fn: (r) => r._measurement == "net" and r._field == %s and r.interface = %s)`;
 
-const Processes = `from(bucket:$2)
+const Processes = `from(bucket:%s)
 |> range(start: -5m)
-|> filter(fn: (r) => r._measurement == "processes" and r._field == $1)`;
+|> filter(fn: (r) => r._measurement == "processes" and r._field == %s)`;
 
-const Postgres = `from(bucket:$3)
+const Postgres = `from(bucket:%s)
 |> range(start: -5m)
-|> filter(fn: (r) => r._measurement == "postgresql" and r._field == $1 and r.db = $2)`;
+|> filter(fn: (r) => r._measurement == "postgresql" and r._field == %s and r.db = %s)`;
 
 
 
