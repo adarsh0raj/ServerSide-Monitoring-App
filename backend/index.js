@@ -2,6 +2,7 @@ const express = require('express')
 const app = express(), bodyParser = require("body-parser");
 const port = 3080
 const query = require('./controller')
+const query_influx = require('./controller_influx')
 
 app.use(express.json())
 app.use(bodyParser.json());

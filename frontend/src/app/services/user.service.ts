@@ -13,8 +13,9 @@ export class UserService {
         return this.http.get<User[]>(`${this.apiUrl}/users`);
     }
 
-    register(user: User) {
-        return this.http.post(`${this.apiUrl}/register`, (user.username, user.password));
+    register(username, password) {
+        console.log({username, password});
+        return this.http.post(`${this.apiUrl}/register`, {username, password});
     }
 
     delete(id: number) {
