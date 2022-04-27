@@ -131,6 +131,79 @@ app.post('/node/delapp', async(req,res) => {
     })
 })
 
+
+app.post('/node/cpu', async(req,res) => {
+    query_influx.cpuUsage(req.body)
+    .then(response => {
+        res.status(200).json(response);
+    })
+    .catch(error => {
+        console.log(error)
+        res.status(500).json(error);
+    })
+})
+
+
+app.post('/node/mem', async(req,res) => {
+    query_influx.memUsage(req.body)
+    .then(response => {
+        res.status(200).json(response);
+    })
+    .catch(error => {
+        console.log(error)
+        res.status(500).json(error);
+    })
+})
+
+
+app.post('/node/disk', async(req,res) => {
+    query_influx.diskUsage(req.body)
+    .then(response => {
+        res.status(200).json(response);
+    })
+    .catch(error => {
+        console.log(error)
+        res.status(500).json(error);
+    })
+})
+
+
+app.post('/node/sys', async(req,res) => {
+    query_influx.sysInfo(req.body)
+    .then(response => {
+        res.status(200).json(response);
+    })
+    .catch(error => {
+        console.log(error)
+        res.status(500).json(error);
+    })
+})
+
+
+app.post('/node/proc', async(req,res) => {
+    query_influx.memUsage(req.body)
+    .then(response => {
+        res.status(200).json(response);
+    })
+    .catch(error => {
+        console.log(error)
+        res.status(500).json(error);
+    })
+})
+
+
+app.post('/node/postgres', async(req,res) => {
+    query_influx.postgresInfo(req.body)
+    .then(response => {
+        res.status(200).json(response);
+    })
+    .catch(error => {
+        console.log(error)
+        res.status(500).json(error);
+    })
+})
+
+
 app.listen(port, () => {
     console.log(`App running on port ${port}.`)
 })

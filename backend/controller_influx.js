@@ -2,15 +2,7 @@ const Influx = require('influx');
 
 //Schema according to Telegraf
 const influx = new Influx.InfluxDB({
-    host: 'localhost',
-    database: 'db_proj',
-    schema: [
-      {
-        measurement: 'cpu',
-        fields: { height: Influx.FieldType.FLOAT },
-        tags: ['unit', 'location']
-      }
-    ]
+    host: 'localhost'
 });
 
 const queries = require('./queries')
@@ -39,9 +31,9 @@ const memUsage = (field, host) => {
     })
 }
 
-const diskUsage = (cpu_no, host, device) => {
+const diskUsage = (cpu_no, device, host) => {
     return new Promise(async (res,rej) => {
-        const result = await influx.query(queries.Disk_Usage, [cpu_no, host, device])
+        const result = await influx.query(queries.Disk_Usage, [cpu_no, device, host])
 
         if(result.error){
             rej(result.error)
@@ -63,9 +55,9 @@ const sysInfo = (field, host) => {
     })
 }
 
-const networkInfo = (field, host, interface) => {
+const networkInfo = (field, interface, host) => {
     return new Promise(async (res,rej) => {
-        const result = await influx.query(queries.Network, [field, host, interface])
+        const result = await influx.query(queries.Network, [field, interface, host])
 
         if(result.error){
             rej(result.error)
@@ -87,11 +79,24 @@ const processInfo = (field, host) => {
     })
 }
 
+const postgresInfo = (field, db, host) => {
+    return new Promise(async (res,rej) => {
+        const result = await influx.query(queries.Postgres, [field, db, host])
+
+        if(result.error){
+            rej(result.error)
+        }
+
+        res(result)
+    })
+}
+
 module.exports = {
     cpuUsage,
     memUsage,
     diskUsage,
     sysInfo,
     networkInfo,
-    processInfo
+    processInfo,
+    postgresInfo
 }
