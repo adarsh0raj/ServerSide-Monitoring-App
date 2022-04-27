@@ -32,34 +32,7 @@ let measure = []
 
 const cpuUsage = (my_arg) => {
     return new Promise(async (res,rej) => {
-        let host = my_arg.host
-        let field = my_arg.field
-        let cpu_no = my_arg.cpu_no
-        influx.queryRows(util.format(queries.CPU_Usage, host, field, cpu_no), 
-        {
-            next(row, tableMeta) {
-                const o = tableMeta.toObject(row)
-                time_stamp.push(o._time)
-                measure.push(o._value)
-            },
-            error(error) {
-                rej(error)
-            },
-            complete() {
-                console.log('completed')
-                res({
-                    time: time_stamp.toString(),
-                    measure: measure.toString()
-                })
-            }
-        } )
-    })
-}
-
-
-const memUsage = (field, host) => {
-    return new Promise(async (res,rej) => {
-        influx.queryRows(util.format(queries.Memory, host, field), 
+        influx.queryRows(util.format(queries.CPU_Usage, my_arg.host, my_arg.field, my_arg.cpu_no), 
         {
             next(row, tableMeta) {
                 const o = tableMeta.toObject(row)
@@ -79,9 +52,10 @@ const memUsage = (field, host) => {
     })
 }
 
-const diskUsage = (cpu_no, device, host) => {
+
+const memUsage = (my_arg) => {
     return new Promise(async (res,rej) => {
-        influx.queryRows(util.format(queries.Disk_Usage, host, cpu_no, device), 
+        influx.queryRows(util.format(queries.Memory, my_arg.host, my_arg.field), 
         {
             next(row, tableMeta) {
                 const o = tableMeta.toObject(row)
@@ -101,9 +75,9 @@ const diskUsage = (cpu_no, device, host) => {
     })
 }
 
-const sysInfo = (field, host) => {
+const diskUsage = (my_arg) => {
     return new Promise(async (res,rej) => {
-        influx.queryRows(util.format(queries.SYS_Info, host, field), 
+        influx.queryRows(util.format(queries.Disk_Usage, my_arg.host, my_arg.cpu_no, my_arg.device), 
         {
             next(row, tableMeta) {
                 const o = tableMeta.toObject(row)
@@ -123,9 +97,9 @@ const sysInfo = (field, host) => {
     })
 }
 
-const networkInfo = (field, inter_face, host) => {
+const sysInfo = (my_arg) => {
     return new Promise(async (res,rej) => {
-        influx.queryRows(util.format(queries.Network, host, field, inter_face), 
+        influx.queryRows(util.format(queries.SYS_Info, my_arg.host, my_arg.field), 
         {
             next(row, tableMeta) {
                 const o = tableMeta.toObject(row)
@@ -145,9 +119,9 @@ const networkInfo = (field, inter_face, host) => {
     })
 }
 
-const processInfo = (field, host) => {
+const networkInfo = (my_arg) => {
     return new Promise(async (res,rej) => {
-        influx.queryRows(util.format(queries.Processes, host, field), 
+        influx.queryRows(util.format(queries.Network, my_arg.host, my_arg.field, my_arg.inter_face), 
         {
             next(row, tableMeta) {
                 const o = tableMeta.toObject(row)
@@ -167,9 +141,31 @@ const processInfo = (field, host) => {
     })
 }
 
-const postgresInfo = (field, db, host) => {
+const processInfo = (my_arg) => {
     return new Promise(async (res,rej) => {
-        influx.queryRows(util.format(queries.Postgres, host, field, db), 
+        influx.queryRows(util.format(queries.Processes, my_arg.host, my_arg.field), 
+        {
+            next(row, tableMeta) {
+                const o = tableMeta.toObject(row)
+                time_stamp.push(o._time)
+                measure.push(o._value)
+            },
+            error(error) {
+                rej(error)
+            },
+            complete() {
+                res({
+                    time: time_stamp,
+                    measure: measure
+                })
+            }
+        } )
+    })
+}
+
+const postgresInfo = (my_arg) => {
+    return new Promise(async (res,rej) => {
+        influx.queryRows(util.format(queries.Postgres, my_arg.host, my_arg.field, my_arg.db), 
         {
             next(row, tableMeta) {
                 const o = tableMeta.toObject(row)

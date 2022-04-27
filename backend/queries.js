@@ -42,7 +42,7 @@ values %L;
 
 const DeleteNodesFromUser = `
 delete from user_node_access
-where username = %s and node_id in %L;
+where username = "%s" and node_id in %L;
 `;
 
 const AddAppToNode = `
@@ -56,34 +56,34 @@ where node_id = %d and application_name in %L;
 `;
 
 
-const CPU_Usage = `from(bucket:%s)
+const CPU_Usage = `from(bucket:"%s")
 |> range(start: -5m)
-|> filter(fn: (r) => r._measurement == "cpu" and r._field == %s and r.cpu == %s)`;
+|> filter(fn: (r) => r._measurement == "cpu" and r._field == "%s" and r.cpu == "%s")`;
 
-const Memory = `from(bucket:%s)
+const Memory = `from(bucket:"%s")
 |> range(start: -5m)
-|> filter(fn: (r) => r._measurement == "mem" and r._field == %s)`;
+|> filter(fn: (r) => r._measurement == "mem" and r._field == "%s")`;
 
 
-const Disk_Usage = `from(bucket:%s)
+const Disk_Usage = `from(bucket:"%s")
 |> range(start: -5m)
-|> filter(fn: (r) => r._measurement == "disk" and r._field == "used_percentage" and r.cpu == %s and r.device = %s)`;
+|> filter(fn: (r) => r._measurement == "disk" and r._field == "used_percentage" and r.cpu == "%s" and r.device = "%s")`;
 
-const SYS_Info = `from(bucket:%s)
+const SYS_Info = `from(bucket:"%s")
 |> range(start: -5m)
-|> filter(fn: (r) => r._measurement == "system" and r._field == %s)`;
+|> filter(fn: (r) => r._measurement == "system" and r._field == "%s")`;
 
-const Network = `from(bucket:%s)
+const Network = `from(bucket:"%s")
 |> range(start: -5m)
-|> filter(fn: (r) => r._measurement == "net" and r._field == %s and r.interface = %s)`;
+|> filter(fn: (r) => r._measurement == "net" and r._field == "%s" and r.interface = "%s")`;
 
-const Processes = `from(bucket:%s)
+const Processes = `from(bucket:"%s")
 |> range(start: -5m)
-|> filter(fn: (r) => r._measurement == "processes" and r._field == %s)`;
+|> filter(fn: (r) => r._measurement == "processes" and r._field == "%s")`;
 
-const Postgres = `from(bucket:%s)
+const Postgres = `from(bucket:"%s")
 |> range(start: -5m)
-|> filter(fn: (r) => r._measurement == "postgresql" and r._field == %s and r.db = %s)`;
+|> filter(fn: (r) => r._measurement == "postgresql" and r._field == "%s" and r.db = "%s")`;
 
 
 
