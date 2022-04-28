@@ -1,0 +1,76 @@
+<div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-3 col-lg-6">
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col-xl-8 mb-5 mb-xl-0">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <h3>System Statistics</h3>
+          <p>The measurements of system hardwares were taken for the last 5 minutes, and were plotted against
+            time which are as follows:
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="chart">
+  <div class="container-fluid mt--7" style="margin-top: 0.25rem !important;">
+    <div class="row" style="margin-top:2.5rem;">
+      <div class="col">
+        <div class="card shadow">
+          <div class="card-header border-0">
+            <h3 class="mb-4">System CPU Usage</h3>
+          </div>
+          <div id="chart" style="margin-left: 80px;">
+            <apx-chart
+              [series]="chartOptions.series"
+              [chart]="chartOptions.chart"
+              [xaxis]="chartOptions.xaxis"
+              [stroke]="chartOptions.stroke"
+              [dataLabels]="chartOptions.dataLabels"
+              [grid]="chartOptions.grid"
+              [yaxis]="chartOptions.yaxis"
+              [title]="chartOptions.title"
+            ></apx-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="chart">
+  <div class="container-fluid mt--7" style="margin-top: 0.25rem !important;">
+    <div class="row" style="margin-top:2.5rem;">
+      <div class="col">
+        <div class="card shadow">
+          <div class="card-header border-0">
+            <h3 class="mb-4">System Memory Usage</h3>
+          </div>
+          <div id="chart" style="margin-left: 80px;">
+            <apx-chart
+              [series]="chartOptions2.series"
+              [chart]="chartOptions2.chart"
+              [xaxis]="chartOptions2.xaxis"
+              [stroke]="chartOptions2.stroke"
+              [dataLabels]="chartOptions2.dataLabels"
+              [grid]="chartOptions2.grid"
+              [yaxis]="chartOptions2.yaxis"
+              [title]="chartOptions2.title"
+            ></apx-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

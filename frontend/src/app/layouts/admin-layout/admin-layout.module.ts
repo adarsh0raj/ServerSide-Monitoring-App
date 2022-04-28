@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 import { ClipboardModule } from 'ngx-clipboard';
 
@@ -15,6 +16,7 @@ import { TablesComponent } from '../../pages/tables/tables.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProcessComponent } from 'src/app/pages/process/process.component';
 import { HomeComponent } from 'src/app/pages/home/home.component';
+import { SystemComponent } from 'src/app/pages/system/system.component';
 
 @NgModule({
   imports: [
@@ -23,7 +25,8 @@ import { HomeComponent } from 'src/app/pages/home/home.component';
     FormsModule,
     HttpClientModule,
     NgbModule,
-    ClipboardModule
+    ClipboardModule,
+    NgApexchartsModule
   ],
   declarations: [
     DashboardComponent,
@@ -33,7 +36,8 @@ import { HomeComponent } from 'src/app/pages/home/home.component';
     HostsconfigComponent,
     HostselectComponent,
     ProcessComponent,
-    HomeComponent
+    HomeComponent,
+    SystemComponent
   ]
 })
 

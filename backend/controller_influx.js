@@ -15,8 +15,8 @@ const util = require('util')
  **/
 const INFLUX_URL='http://localhost:8086'
 //Change token to your own influx db token
-const INFLUX_TOKEN='RcZFpGFYMfD3zs_oueOwYSjOc7_AKpaVwAswN-FRGtrVGWxDHplx7_g62kciEUgrAeLw0-jGpKGFmTF6V3Kq7A=='
-const INFLUX_ORG='organisation'
+const INFLUX_TOKEN='ZHd4d0w5AXmT92PXMMwHfqD3gglYF_cF1SFTZ-wILhT-cYa8mtqoM6D5kk6oYJD3kRTxmepa1Qgr49cRfNTBnQ=='
+const INFLUX_ORG='db'
 
 const url = INFLUX_URL || ''
 const token = INFLUX_TOKEN
