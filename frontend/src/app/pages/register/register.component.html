@@ -38,37 +38,41 @@
           <div class="text-center text-muted mb-4">
             <small>Sign up with credentials</small>
           </div>
-          <form role="form">
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
               <div class="input-group input-group-alternative mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                 </div>
-                <input class="form-control" placeholder="Username" type="text">
+                <input placeholder="Username" type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                  <div *ngIf="f.username.errors.required">UserName is Required.</div>
+                </div>
               </div>
             </div>
-            <!-- <div class="form-group">
-              <div class="input-group input-group-alternative mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="ni ni-email-83"></i></span>
-                </div>
-                <input class="form-control" placeholder="Email" type="email">
-              </div>
-            </div> -->
             <div class="form-group">
               <div class="input-group input-group-alternative">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                 </div>
-                <input class="form-control" placeholder="Password" type="password">
+                <input class="form-control" placeholder="Password" type="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                  <div *ngIf="f.password.errors.required">Password is required</div>
+                  <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                </div>
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-alternative">
                 <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="ni ni-lock-circle-closed"></i></span>
+                  <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                 </div>
-                <input class="form-control" placeholder="Confirm Password" type="password">
+                <input class="form-control" placeholder="Confirm Password" type="password" formControlName="conf_password" [ngClass]="{ 'is-invalid': submitted && f.conf_password.errors }">
+                <div *ngIf="submitted && f.conf_password.errors" class="invalid-feedback">
+                  <div *ngIf="f.conf_password.errors.required">Password is required</div>
+                  <div *ngIf="f.conf_password.errors.minlength">Password must be at least 6 characters</div>
+                  <div *ngIf="f.conf_password.errors.confirmedValidator">Password and Confirm Password must match.</div>
+                </div>
               </div>
             </div>
             <!-- <div class="text-muted font-italic"><small>password strength: <span class="text-success font-weight-700">strong</span></small></div> -->
@@ -82,8 +86,11 @@
                 </div>
               </div>
             </div> -->
-            <div class="text-center">
-              <button type="button" class="btn btn-primary mt-4">Create account</button>
+            <div class="text-center form-group">
+              <button [disabled]="loading" class="btn btn-primary mt-4">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                Create Acccount
+              </button>
             </div>
           </form>
         </div>
