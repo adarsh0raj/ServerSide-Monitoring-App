@@ -1,15 +1,31 @@
-const Influx = require('influx');
-
 //Schema according to Telegraf
-const influx = new Influx.InfluxDB({
-    host: 'localhost'
-});
+const inf = require('@influxdata/influxdb-client')
+
+/** Environment variables **/
+
+
+/**
+ * Instantiate the InfluxDB client
+ * with a configuration object.
+ *
+ * Get a query client configured for your org.
+ **/
+const INFLUX_URL='https://localhost:8086'
+//Change token to your own influx db token
+const INFLUX_TOKEN='ZHd4d0w5AXmT92PXMMwHfqD3gglYF_cF1SFTZ-wILhT-cYa8mtqoM6D5kk6oYJD3kRTxmepa1Qgr49cRfNTBnQ=='
+const INFLUX_ORG='db'
+
+const url = INFLUX_URL || ''
+const token = INFLUX_TOKEN
+const org = INFLUX_ORG || ''
+
+const influx = new inf.InfluxDB({url, token}).getQueryApi(org);
 
 const queries = require('./queries')
 
 const cpuUsage = (field, cpu_no, host) => {
     return new Promise(async (res,rej) => {
-        const result = await influx.query(queries.CPU_Usage, [field, cpu_no, host])
+        const result = await influx.queryRows(queries.CPU_Usage, [field, cpu_no, host])
 
         if(result.error){
             rej(result.error)
@@ -55,9 +71,9 @@ const sysInfo = (field, host) => {
     })
 }
 
-const networkInfo = (field, interface, host) => {
+const networkInfo = (field, inter_face, host) => {
     return new Promise(async (res,rej) => {
-        const result = await influx.query(queries.Network, [field, interface, host])
+        const result = await influx.query(queries.Network, [field, inter_face, host])
 
         if(result.error){
             rej(result.error)
