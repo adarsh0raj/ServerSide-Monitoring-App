@@ -58,28 +58,34 @@ where node_id = %d and application_name in %L;
 
 const CPU_Usage = `from(bucket:"bucket")
 |> range(start: -5m)
-|> filter(fn: (r) => r._measurement == "cpu" and r._field == $1 and r.cpu == $2 and r.host = $3)`;
+|> filter(fn: (r) => r._measurement == "cpu" and r._field == $1 and r.cpu == $2)`;
 
 const Memory = `from(bucket:"bucket")
 |> range(start: -5m)
-|> filter(fn: (r) => r._measurement == "mem" and r._field == $1 and r.host = $2)`;
+|> filter(fn: (r) => r._measurement == "mem" and r._field == $1)`;
 
 
 const Disk_Usage = `from(bucket:"bucket")
 |> range(start: -5m)
-|> filter(fn: (r) => r._measurement == "disk" and r._field == "used_percentage" and r.cpu == $1 and r.host = $2 and r.device = $3)`;
+|> filter(fn: (r) => r._measurement == "disk" and r._field == "used_percentage" and r.cpu == $1 and r.device = $2)`;
 
 const SYS_Info = `from(bucket:"bucket")
 |> range(start: -5m)
-|> filter(fn: (r) => r._measurement == "system" and r._field == $1 and r.host = $2)`;
+|> filter(fn: (r) => r._measurement == "system" and r._field == $1)`;
 
 const Network = `from(bucket:"bucket")
 |> range(start: -5m)
-|> filter(fn: (r) => r._measurement == "net" and r._field == $1 and r.host = $2 and r.interface = $3)`;
+|> filter(fn: (r) => r._measurement == "net" and r._field == $1 and r.interface = $2)`;
 
 const Processes = `from(bucket:"bucket")
 |> range(start: -5m)
-|> filter(fn: (r) => r._measurement == "processes" and r._field == $1 and r.host = $2)`;
+|> filter(fn: (r) => r._measurement == "processes" and r._field == $1)`;
+
+const Postgres = `from(bucket:"bucket")
+|> range(start: -5m)
+|> filter(fn: (r) => r._measurement == "postgresql" and r._field == $1 and r.db = $2)`;
+
+
 
 
 module.exports = {
@@ -93,5 +99,11 @@ module.exports = {
     AddNodesToUser,
     DeleteNodesFromUser,
     AddAppToNode,
-    DelAppFromNode
+    DelAppFromNode,
+    CPU_Usage,
+    Memory,
+    Disk_Usage,
+    SYS_Info,
+    Network,
+    Processes
 }
