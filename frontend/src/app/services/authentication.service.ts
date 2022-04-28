@@ -11,6 +11,7 @@ export class AuthenticationService {
     public readonly LOGIN_PATH = '/login';
     public readonly CONFIRM_PATH = '/confirm';
     public readonly INITIAL_PATH = '/dashboard';
+    public readonly URL = 'http://localhost:3080';
 
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
@@ -25,7 +26,7 @@ export class AuthenticationService {
     }
 
     login(username, password) {
-        return this.http.post<any>(`http://localhost:4000/users/authenticate`, { username, password })
+        return this.http.post<any>(`${this.URL}/login`, { username, password })
             .pipe(map(user => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('currentUser', JSON.stringify(user));

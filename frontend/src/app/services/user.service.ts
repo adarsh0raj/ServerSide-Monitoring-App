@@ -7,14 +7,15 @@ import { User } from '../interfaces/user';
 export class UserService {
     constructor(private http: HttpClient) { }
 
-    public apiUrl = 'http://localhost:4000';
+    public apiUrl = 'http://localhost:3080';
 
     getAll() {
         return this.http.get<User[]>(`${this.apiUrl}/users`);
     }
 
-    register(user: User) {
-        return this.http.post(`${this.apiUrl}/users/register`, user);
+    register(username, password) {
+        console.log({username, password});
+        return this.http.post(`${this.apiUrl}/register`, {username, password});
     }
 
     delete(id: number) {
