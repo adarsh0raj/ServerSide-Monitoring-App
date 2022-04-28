@@ -37,13 +37,16 @@
           <div class="text-center text-muted mb-4">
             <small>Sign in with credentials</small>
           </div>
-          <form role="form" [formGroup]="loginForm">
+          <form role="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <div class="form-group mb-3">
               <div class="input-group input-group-alternative">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                 </div>
-                <input class="form-control" placeholder="Username" formControlName="username" type="text">
+                <input class="form-control" placeholder="Username" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors}" type="text">
+                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                  <div *ngIf="f.username.errors.required">Username is required</div>
+                </div>
               </div>
             </div>
             <div class="form-group">
@@ -51,7 +54,10 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                 </div>
-                <input class="form-control" placeholder="Password" formControlName="password" type="password">
+                <input class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" placeholder="Password" formControlName="password" type="password">
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                  <div *ngIf="f.password.errors.required">Password is required</div>
+                </div>
               </div>
             </div>
             <!-- <div class="custom-control custom-control-alternative custom-checkbox">
@@ -60,8 +66,11 @@
                 <span class="text-muted">Remember me</span>
               </label>
             </div> -->
-            <div class="text-center">
-              <button type="submit" (click)="login()" [disabled]="!loginForm.valid" class="btn btn-primary my-4">Log in</button>
+            <div class="text-center form-group">
+              <button [disabled]="loading" class="btn btn-primary my-4">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                  Login
+              </button>
             </div>
           </form>
         </div>

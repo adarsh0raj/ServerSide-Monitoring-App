@@ -27,7 +27,8 @@ import { fakeBackendProvider } from './helpers/fake-backend';
     ComponentsModule,
     NgbModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [
     AppComponent,
