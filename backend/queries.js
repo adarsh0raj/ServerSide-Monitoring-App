@@ -93,5 +93,11 @@ module.exports = {
     AddNodesToUser,
     DeleteNodesFromUser,
     AddAppToNode,
-    DelAppFromNode
+    DelAppFromNode,
+    CPU_Usage,
+    Memory,
+    Disk_Usage,
+    SYS_Info,
+    Network,
+    Processes
 }

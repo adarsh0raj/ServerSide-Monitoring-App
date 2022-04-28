@@ -9,8 +9,6 @@ const pool = new Pool({
 const queries = require('./queries')
 
 const regUser = (username, password) => {
-    console.log(username)
-    console.log(password)
     return new Promise(async (res,rej) => {
         const reg = await pool.query(queries.RegUser,[username, password])
 
@@ -167,5 +165,7 @@ module.exports = {
     addApplication,
     delApplication,
     addNodesToUser,
-    delNodesFromUser
+    delNodesFromUser,
+    addAppToNode,
+    delAppFromNode
 }
