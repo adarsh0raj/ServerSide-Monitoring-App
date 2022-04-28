@@ -55,7 +55,8 @@ export class RegisterComponent implements OnInit {
       }
 
       this.loading = true;
-      this.userService.register(this.registerForm.value)
+      console.log(this.registerForm.value);
+      this.userService.register(this.registerForm.value.username, this.registerForm.value.password)
           .pipe(first())
           .subscribe(
               data => {
@@ -66,5 +67,5 @@ export class RegisterComponent implements OnInit {
                   this.alertService.error(error);
                   this.loading = false;
               });
-  }
+    }
 }
