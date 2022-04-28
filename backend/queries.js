@@ -9,6 +9,17 @@ from users
 where username = $1 and password = $2
 `;
 
+const GetNodes = `
+select *
+from nodes
+`;
+
+const UpdateNodes = `
+update nodes
+set ip = $3
+where node_id = $1 and name = $2
+`;
+
 const CheckNode = `
 select * 
 from nodes
@@ -98,6 +109,8 @@ const Postgres = `from(bucket:"%s")
 module.exports = {
     RegUser,
     LoginUser,
+    GetNodes,
+    UpdateNodes,
     CheckNode,
     RegNode,
     DelNode,

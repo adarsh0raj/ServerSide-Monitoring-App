@@ -34,6 +34,26 @@ const loginUser = (username, password) => {
     })
 }
 
+const getNodes = () => {
+    return new Promise(async (res,rej) => {
+        const nodes = await pool.query(queries.GetNodes)
+        if(nodes.error){
+            rej(nodes.error)
+        }
+        res(nodes.rows)
+    })
+}
+
+const updateNodes = (node_id, name, ip) => {
+    return new Promise(async (res,rej) => {
+        const nodes = await pool.query(queries.UpdateNodes, [node_id, name, ip])
+        if(nodes.error){
+            rej(nodes.error)
+        }
+        res("Nodes Ip Updated Successfully")
+    })
+}
+
 const regNode = (name, ip) => {
     return new Promise(async (res,rej) => {
         const check = await pool.query(queries.CheckNode,[ip])
@@ -162,6 +182,8 @@ const delAppFromNode = (body) => {
 module.exports = {
     regUser,
     loginUser,
+    getNodes,
+    updateNodes,
     regNode,
     delNode,
     addApplication,

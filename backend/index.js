@@ -3,8 +3,10 @@ const app = express(), bodyParser = require("body-parser");
 const port = 3080
 const query = require('./controller')
 const query_influx = require('./controller_influx.js')
+var cors = require('cors')
 
-app.use(express.json())
+app.use(cors());
+app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -36,6 +38,29 @@ app.post('/login', async(req, res) => {
     .catch(error => {
       console.log(error)
       res.status(500).json(error);
+    })
+})
+
+app.get('/nodes', async(req, res) => {
+    query.getNodes()
+    .then(response => {
+        res.status(200).json(response);
+    })
+    .catch(error => {
+        console.log(error)
+        res.status(500).json(error);
+    })
+})
+
+app.post('/nodes/update', async(req, res) => {
+    const {node_id, name, ip} = req.body
+    query.updateNodes(node_id, name, ip)
+    .then(response => {
+        res.status(200).json(response);
+    })
+    .catch(error => {
+        console.log(error)
+        res.status(500).json(error);
     })
 })
 
