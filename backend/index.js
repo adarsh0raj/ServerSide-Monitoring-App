@@ -43,11 +43,11 @@ app.post('/node/register', async(req, res) => {
     const {name, ip} = req.body
     query.regNode(name, ip)
     .then(response => {
-      res.status(200).send(response);
+      res.status(200).json(response);
     })
     .catch(error => {
       console.log(error)
-      res.status(500).send(error);
+      res.status(500).json(error);
     })
 })
 
@@ -55,11 +55,11 @@ app.post('/node/delete', async(req,res) => {
     const {ip} = req.body
     query.delNode(ip)
     .then(response => {
-        res.status(200).send(response);
+        res.status(200).json(response);
     })
     .catch(error => {
         console.log(error)
-        res.status(500).send(error);
+        res.status(500).json(error);
     })
 })
 
@@ -67,11 +67,11 @@ app.post('/application/add', async(req,res) => {
     const {name} = req.body
     query.addApplication(ip)
     .then(response => {
-        res.status(200).send(response);
+        res.status(200).json(response);
     })
     .catch(error => {
         console.log(error)
-        res.status(500).send(error);
+        res.status(500).json(error);
     })
 })
 
@@ -79,55 +79,55 @@ app.post('/application/delete', async(req,res) => {
     const {name} = req.body
     query.delApplication(name)
     .then(response => {
-        res.status(200).send(response);
+        res.status(200).json(response);
     })
     .catch(error => {
         console.log(error)
-        res.status(500).send(error);
+        res.status(500).json(error);
     })
 })
 
 app.post('user/addnode', async(req,res) => {
     query.addNodesToUser(req.body)
     .then(response => {
-        res.status(200).send(response);
+        res.status(200).json(response);
     })
     .catch(error => {
         console.log(error)
-        res.status(500).send(error);
+        res.status(500).json(error);
     })
 })
 
 app.post('user/delnode', async(req,res) => {
     query.delNodesFromUser(req.body)
     .then(response => {
-        res.status(200).send(response);
+        res.status(200).json(response);
     })
     .catch(error => {
         console.log(error)
-        res.status(500).send(error);
+        res.status(500).json(error);
     })
 })
 
 app.post('/node/addapp', async(req,res) => {
     query.addAppToNode(req.body)
     .then(response => {
-        res.status(200).send(response);
+        res.status(200).json(response);
     })
     .catch(error => {
         console.log(error)
-        res.status(500).send(error);
+        res.status(500).json(error);
     })
 })
 
 app.post('/node/delapp', async(req,res) => {
     query.addDelToNode(req.body)
     .then(response => {
-        res.status(200).send(response);
+        res.status(200).json(response);
     })
     .catch(error => {
         console.log(error)
-        res.status(500).send(error);
+        res.status(500).json(error);
     })
 })
 
