@@ -47,6 +47,9 @@ const cpuUsage = (my_arg) => {
                     time: time_stamp,
                     measure: measure
                 })
+
+                time_stamp = []
+                measure = []
             }
         } )
     })
@@ -70,6 +73,8 @@ const memUsage = (my_arg) => {
                     time: time_stamp,
                     measure: measure
                 })
+                time_stamp = []
+                measure = []
             }
         } )
     })
@@ -92,6 +97,9 @@ const diskUsage = (my_arg) => {
                     time: time_stamp,
                     measure: measure
                 })
+
+                time_stamp = []
+                measure = []
             }
         } )
     })
@@ -114,6 +122,9 @@ const sysInfo = (my_arg) => {
                     time: time_stamp,
                     measure: measure
                 })
+
+                time_stamp = []
+                measure = []
             }
         } )
     })
@@ -136,6 +147,9 @@ const networkInfo = (my_arg) => {
                     time: time_stamp,
                     measure: measure
                 })
+
+                time_stamp = []
+                measure = []
             }
         } )
     })
@@ -158,6 +172,9 @@ const processInfo = (my_arg) => {
                     time: time_stamp,
                     measure: measure
                 })
+
+                time_stamp = []
+                measure = []
             }
         } )
     })
@@ -180,6 +197,9 @@ const postgresInfo = (my_arg) => {
                     time: time_stamp,
                     measure: measure
                 })
+
+                time_stamp = []
+                measure = []
             }
         } )
     })
