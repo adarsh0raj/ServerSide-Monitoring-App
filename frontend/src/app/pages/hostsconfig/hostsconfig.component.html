@@ -16,123 +16,31 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">System Name</th>
-                <th scope="col">IP Address</th>
-                <th scope="col">MAC Id</th>
-                <th scope="col"></th>
+                <th style="font-size: medium;" scope="col">System ID</th>
+                <th style="font-size: medium;" scope="col">System Name</th>
+                <th style="font-size: medium;" scope="col">IP Address</th>
+                <th style="font-size: medium;" scope="col">New IP</th>
+                <th style="font-size: medium;" scope="col"></th>
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr *ngFor="let host of hosts">
+                <td> {{ host.node_id }}</td>
                 <th scope="row">
                   <div class="media align-items-center">
                     <div class="media-body">
-                      <span class="mb-0 text-sm">System 1</span>
+                      <span class="mb-0 text-sm">{{ host.name }}</span>
                     </div>
                   </div>
                 </th>
                 <td>
-                  10.1.1.1
+                  {{ host.ip }}
                 </td>
                 <td>
-                  1danc:cscw:wcwcw
-                </td>
-                <td class="text-right">
-                  <a href="javascript:void(0)">Edit</a>
-                  <!-- <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Action</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Another action</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
-                    </div>
-                  </div> -->
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">System 2</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                  10.1.1.1
+                  <input type="text" class="form-control" [(ngModel)]="host.new_ip" style="width: 150px;"/>
                 </td>
                 <td>
-                  1danc:cscw:wcwcw
-                </td>
-                <td class="text-right">
-                  <a href="javascript:void(0)">Edit</a>
-                  <!-- <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Action</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Another action</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
-                    </div>
-                  </div> -->
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">System 3</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                  10.1.1.1
-                </td>
-                <td>
-                  1danc:cscw:wcwcw
-                </td>
-                <td class="text-right">
-                  <a href="javascript:void(0)">Edit</a>
-                  <!-- <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Action</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Another action</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
-                    </div>
-                  </div> -->
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">System 4</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                  10.1.1.1
-                </td>
-                <td>
-                  1danc:cscw:wcwcw
-                </td>
-                <td class="text-right">
-                  <a href="javascript:void(0)">Edit</a>
-                  <!-- <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Action</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Another action</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
-                    </div>
-                  </div> -->
+                  <button class="btn btn-sm btn-primary" (click)="changeIP(host.node_id)">Edit IP</button>
                 </td>
               </tr>
             </tbody>
@@ -140,9 +48,9 @@
         </div>
         <div class="card-footer py-4">
           <div class="btn-wrapper text-center">
-            <a href="javascript:void(0)" class="btn btn-neutral btn-icon">
+            <a routerLink="/hostselect" (click)="updateHosts()" routerLinkActive="active" class="btn btn-neutral btn-icon" >
               <span class="btn-inner--icon"><i class="fas fa-curved-next"></i></span>
-              <span class="btn-inner--text">Proceed Without Change</span>
+              <span class="btn-inner--text">Proceed to Hosts Selection</span>
             </a>
           </div>
         </div>

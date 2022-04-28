@@ -16,103 +16,34 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">System Name</th>
-                <th scope="col">IP Address</th>
-                <th scope="col">MAC Id</th>
-                <th scope="col"></th>
+                <th style="font-size: medium;" scope="col">System ID</th>
+                <th style="font-size: medium;" scope="col">System Name</th>
+                <th style="font-size: medium;" scope="col">IP Address</th>
+                <th style="font-size: medium;"scope="col">Selection</th>
+                <th style="font-size: medium;" scope="col">Status</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">
+              <tr *ngFor="let host of hosts">
+                <td>
+                  {{ host.node_id }}
+                </td>
+                <th scope="row" >
                   <div class="media align-items-center">
                     <div class="media-body">
-                      <span class="mb-0 text-sm">System 1</span>
+                      <span class="mb-0 text-sm">{{ host.name }}</span>
                     </div>
                   </div>
                 </th>
                 <td>
-                  10.1.1.1
+                  {{ host.ip }}
+                </td>
+                <td class="text-center">
+                  <input type="checkbox" class="form-control" style="width: 20px; height: 20px; padding-left:10px;" [(ngModel)]="host.selected"/>
                 </td>
                 <td>
-                  1danc:cscw:wcwcw
-                </td>
-                <td class="text-right">
-                  <div class="btn-wrapper text-center">
-                    <a href="javascript:void(0)" class="btn btn-neutral btn-icon">
-                      <span class="btn-inner--icon"><i class="fas fa-curved-next"></i></span>
-                      <span class="btn-inner--text">Select This</span>
-                    </a>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">System 2</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                  10.1.1.1
-                </td>
-                <td>
-                  1danc:cscw:wcwcw
-                </td>
-                <td class="text-right">
-                  <div class="btn-wrapper text-center">
-                    <a href="javascript:void(0)" class="btn btn-neutral btn-icon">
-                      <span class="btn-inner--icon"><i class="fas fa-curved-next"></i></span>
-                      <span class="btn-inner--text">Select This</span>
-                    </a>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">System 3</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                  10.1.1.1
-                </td>
-                <td>
-                  1danc:cscw:wcwcw
-                </td>
-                <td class="text-right">
-                  <div class="btn-wrapper text-center">
-                    <a href="javascript:void(0)" class="btn btn-neutral btn-icon">
-                      <span class="btn-inner--icon"><i class="fas fa-curved-next"></i></span>
-                      <span class="btn-inner--text">Select This</span>
-                    </a>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">System 4</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                  10.1.1.1
-                </td>
-                <td>
-                  1danc:cscw:wcwcw
-                </td>
-                <td class="text-right">
-                  <div class="btn-wrapper text-center">
-                    <a href="javascript:void(0)" class="btn btn-neutral btn-icon">
-                      <span class="btn-inner--icon"><i class="fas fa-curved-next"></i></span>
-                      <span class="btn-inner--text">Select This</span>
-                    </a>
-                  </div>
+                    <span *ngIf="host.selected" >Selected</span>
+                    <span *ngIf="!host.selected" >Not Selected</span>
                 </td>
               </tr>
             </tbody>
@@ -120,7 +51,7 @@
         </div>
         <div class="card-footer py-4">
           <div class="btn-wrapper text-center">
-            <a href="javascript:void(0)" class="btn btn-neutral btn-icon">
+            <a routerLink="/process" (click)="selectHosts()" routerLinkActive="active" class="btn btn-neutral btn-icon">
               <span class="btn-inner--icon"><i class="fas fa-curved-next"></i></span>
               <span class="btn-inner--text">Proceed With The Selection</span>
             </a>
