@@ -7,8 +7,10 @@ import { HostselectComponent } from 'src/app/pages/hostselect/hostselect.compone
 import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
 import { TablesComponent } from '../../pages/tables/tables.component';
 import { ProcessComponent } from 'src/app/pages/process/process.component';
+import { HomeComponent } from 'src/app/pages/home/home.component';
 
 export const AdminLayoutRoutes: Routes = [
+    { path: 'home',           component: HomeComponent },
     { path: 'dashboard',      component: DashboardComponent },
     { path: 'user-profile',   component: UserProfileComponent },
     { path: 'tables',         component: TablesComponent },
