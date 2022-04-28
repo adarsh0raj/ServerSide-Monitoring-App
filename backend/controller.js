@@ -28,7 +28,9 @@ const loginUser = (username, password) => {
             rej(login.error)
         }
 
-        res('Logged in Successfully')
+        res({
+            username: login.rows[0].username
+        })
     })
 }
 

@@ -15,21 +15,23 @@ export class HomeComponent implements OnInit {
         private userService: UserService
     ) {
         this.currentUser = this.authenticationService.currentUserValue;
+        console.log(this.currentUser);
     }
 
     ngOnInit() {
-        this.loadAllUsers();
+        // todo : load all systems available to this user 
+        // todo : load all processes available to those systems
     }
 
-    deleteUser(id: number) {
-        this.userService.delete(id)
-            .pipe(first())
-            .subscribe(() => this.loadAllUsers());
-    }
+    // deleteUser(id: number) {
+    //     this.userService.delete(id)
+    //         .pipe(first())
+    //         .subscribe(() => this.loadAllUsers());
+    // }
 
-    private loadAllUsers() {
-        this.userService.getAll()
-            .pipe(first())
-            .subscribe(users => this.users = users);
-    }
+    // private loadAllUsers() {
+    //     this.userService.getAll()
+    //         .pipe(first())
+    //         .subscribe(users => this.users = users);
+    // }
 }
