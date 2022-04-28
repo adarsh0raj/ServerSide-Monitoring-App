@@ -41,6 +41,8 @@ const cpuUsage = (my_arg) => {
             },
             error(error) {
                 rej(error)
+                time_stamp = []
+                measure = []
             },
             complete() {
                 res({
@@ -67,6 +69,8 @@ const memUsage = (my_arg) => {
             },
             error(error) {
                 rej(error)
+                time_stamp = []
+                measure = []
             },
             complete() {
                 res({
@@ -91,6 +95,8 @@ const diskUsage = (my_arg) => {
             },
             error(error) {
                 rej(error)
+                time_stamp = []
+                measure = []
             },
             complete() {
                 res({
@@ -116,6 +122,8 @@ const sysInfo = (my_arg) => {
             },
             error(error) {
                 rej(error)
+                time_stamp = []
+                measure = []
             },
             complete() {
                 res({
@@ -141,6 +149,8 @@ const networkInfo = (my_arg) => {
             },
             error(error) {
                 rej(error)
+                time_stamp = []
+                measure = []
             },
             complete() {
                 res({
@@ -166,6 +176,8 @@ const processInfo = (my_arg) => {
             },
             error(error) {
                 rej(error)
+                time_stamp = []
+                measure = []
             },
             complete() {
                 res({
@@ -191,6 +203,8 @@ const postgresInfo = (my_arg) => {
             },
             error(error) {
                 rej(error)
+                time_stamp = []
+                measure = []
             },
             complete() {
                 res({
