@@ -76,38 +76,38 @@ where node_id = %d and application_name in %L;
 const CPU_Usage = `from(bucket:"%s")
 |> range(start: -5m)
 |> timeShift(duration: 5h30m)
-|> filter(fn: (r) => r._measurement == "cpu" and r._field == "%s" and r.cpu == "%s")`;
+|> filter(fn: (r) => r._measurement == "cpu" and r._field == "%s" and r.cpu == "%s" and r.host == "%s")`;
 
 const Memory = `from(bucket:"%s")
 |> range(start: -5m)
 |> timeShift(duration: 5h30m)
-|> filter(fn: (r) => r._measurement == "mem" and r._field == "%s")`;
+|> filter(fn: (r) => r._measurement == "mem" and r._field == "%s" and r.host == "%s")`;
 
 
 const Disk_Usage = `from(bucket:"%s")
 |> range(start: -5m)
 |> timeShift(duration: 5h30m)
-|> filter(fn: (r) => r._measurement == "disk" and r._field == "used_percentage" and r.cpu == "%s" and r.device = "%s")`;
+|> filter(fn: (r) => r._measurement == "disk" and r._field == "used_percentage" and r.cpu == "%s" and r.device = "%s" and r.host == "%s")`;
 
 const SYS_Info = `from(bucket:"%s")
 |> range(start: -5m)
 |> timeShift(duration: 5h30m)
-|> filter(fn: (r) => r._measurement == "system" and r._field == "%s")`;
+|> filter(fn: (r) => r._measurement == "system" and r._field == "%s" and r.host == "%s")`;
 
 const Network = `from(bucket:"%s")
 |> range(start: -5m)
 |> timeShift(duration: 5h30m)
-|> filter(fn: (r) => r._measurement == "net" and r._field == "%s" and r.interface = "%s")`;
+|> filter(fn: (r) => r._measurement == "net" and r._field == "%s" and r.interface = "%s" and r.host == "%s")`;
 
 const Processes = `from(bucket:"%s")
 |> range(start: -5m)
 |> timeShift(duration: 5h30m)
-|> filter(fn: (r) => r._measurement == "processes" and r._field == "%s")`;
+|> filter(fn: (r) => r._measurement == "processes" and r._field == "%s" and r.host == "%s")`;
 
 const Postgres = `from(bucket:"%s")
 |> range(start: -5m)
 |> timeShift(duration: 5h30m)
-|> filter(fn: (r) => r._measurement == "postgresql" and r._field == "%s" and r.db = "%s")`;
+|> filter(fn: (r) => r._measurement == "postgresql" and r._field == "%s" and r.db = "%s" and r.host == "%s")`;
 
 
 

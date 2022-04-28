@@ -32,7 +32,7 @@ let measure = []
 
 const cpuUsage = (my_arg) => {
     return new Promise(async (res,rej) => {
-        influx.queryRows(util.format(queries.CPU_Usage, my_arg.host, my_arg.field, my_arg.cpu_no), 
+        influx.queryRows(util.format(queries.CPU_Usage, my_arg.host, my_arg.field, my_arg.cpu_no, my_arg.host), 
         {
             next(row, tableMeta) {
                 const o = tableMeta.toObject(row)
@@ -60,7 +60,7 @@ const cpuUsage = (my_arg) => {
 
 const memUsage = (my_arg) => {
     return new Promise(async (res,rej) => {
-        influx.queryRows(util.format(queries.Memory, my_arg.host, my_arg.field), 
+        influx.queryRows(util.format(queries.Memory, my_arg.host, my_arg.field, my_arg.host), 
         {
             next(row, tableMeta) {
                 const o = tableMeta.toObject(row)
@@ -86,7 +86,7 @@ const memUsage = (my_arg) => {
 
 const diskUsage = (my_arg) => {
     return new Promise(async (res,rej) => {
-        influx.queryRows(util.format(queries.Disk_Usage, my_arg.host, my_arg.cpu_no, my_arg.device), 
+        influx.queryRows(util.format(queries.Disk_Usage, my_arg.host, my_arg.cpu_no, my_arg.device, my_arg.host), 
         {
             next(row, tableMeta) {
                 const o = tableMeta.toObject(row)
@@ -113,7 +113,7 @@ const diskUsage = (my_arg) => {
 
 const sysInfo = (my_arg) => {
     return new Promise(async (res,rej) => {
-        influx.queryRows(util.format(queries.SYS_Info, my_arg.host, my_arg.field), 
+        influx.queryRows(util.format(queries.SYS_Info, my_arg.host, my_arg.field, my_arg.host), 
         {
             next(row, tableMeta) {
                 const o = tableMeta.toObject(row)
@@ -140,7 +140,7 @@ const sysInfo = (my_arg) => {
 
 const networkInfo = (my_arg) => {
     return new Promise(async (res,rej) => {
-        influx.queryRows(util.format(queries.Network, my_arg.host, my_arg.field, my_arg.inter_face), 
+        influx.queryRows(util.format(queries.Network, my_arg.host, my_arg.field, my_arg.inter_face, my_arg.host), 
         {
             next(row, tableMeta) {
                 const o = tableMeta.toObject(row)
@@ -167,7 +167,7 @@ const networkInfo = (my_arg) => {
 
 const processInfo = (my_arg) => {
     return new Promise(async (res,rej) => {
-        influx.queryRows(util.format(queries.Processes, my_arg.host, my_arg.field), 
+        influx.queryRows(util.format(queries.Processes, my_arg.host, my_arg.field, my_arg.host), 
         {
             next(row, tableMeta) {
                 const o = tableMeta.toObject(row)
@@ -194,7 +194,7 @@ const processInfo = (my_arg) => {
 
 const postgresInfo = (my_arg) => {
     return new Promise(async (res,rej) => {
-        influx.queryRows(util.format(queries.Postgres, my_arg.host, my_arg.field, my_arg.db), 
+        influx.queryRows(util.format(queries.Postgres, my_arg.host, my_arg.field, my_arg.db, my_arg.host), 
         {
             next(row, tableMeta) {
                 const o = tableMeta.toObject(row)
