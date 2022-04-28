@@ -18,11 +18,11 @@ app.post('/register', async(req, res) => {
     const {username, password} = req.body
     query.regUser(username, password)
     .then(response => {
-      res.status(200).send(response);
+      res.status(200).json(response);
     })
     .catch(error => {
       console.log(error)
-      res.status(500).send(error);
+      res.status(500).json(error);
     })
 })
 
@@ -30,11 +30,11 @@ app.post('/login', async(req, res) => {
     const {username, password} = req.body
     query.loginUser(username, password)
     .then(response => {
-      res.status(200).send(response);
+      res.status(200).json(response);
     })
     .catch(error => {
       console.log(error)
-      res.status(500).send(error);
+      res.status(500).json(error);
     })
 })
 

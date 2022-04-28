@@ -34,9 +34,9 @@ import { fakeBackendProvider } from './helpers/fake-backend';
     AuthLayoutComponent
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    fakeBackendProvider
+    // { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    // fakeBackendProvider
   ],
   bootstrap: [AppComponent]
 })

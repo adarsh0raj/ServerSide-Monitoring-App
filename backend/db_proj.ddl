@@ -1,14 +1,14 @@
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS nodes;
-DROP TABLE IF EXISTS user_node_access;
-DROP TABLE IF EXISTS application;
-DROP TABLE IF EXISTS node_application;
+DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS nodes CASCADE;
+DROP TABLE IF EXISTS user_node_access CASCADE;
+DROP TABLE IF EXISTS application CASCADE;
+DROP TABLE IF EXISTS node_application CASCADE;
 
 
 CREATE TABLE users(
-    id INTEGER PRIMARY KEY,
     username VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL
+    password VARCHAR(255) NOT NULL,
+    PRIMARY KEY(username)
 );
 
 CREATE TABLE nodes(

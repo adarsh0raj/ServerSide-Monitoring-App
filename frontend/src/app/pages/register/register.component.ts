@@ -55,17 +55,18 @@ export class RegisterComponent implements OnInit {
       }
 
       this.loading = true;
-      console.log(this.registerForm.value);
       this.userService.register(this.registerForm.value.username, this.registerForm.value.password)
           .pipe(first())
           .subscribe(
               data => {
+                  console.log("this happended", data);
                   this.alertService.success('Registration successful', true);
                   this.router.navigate(['/login']);
               },
               error => {
+                  console.log("err happended");
                   this.alertService.error(error);
                   this.loading = false;
-              });
+    });
     }
 }
