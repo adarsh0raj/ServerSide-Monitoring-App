@@ -115,6 +115,10 @@ const Postgres = `from(bucket:"%s")
 |> filter(fn: (r) => r._measurement == "postgresql" and r._field == "%s" and r.db = "%s" and r.host == "%s")`;
 
 
+const Apache = `from(bucket:"%s")
+|> range(start: -5m)
+|> timeShift(duration: 5h30m)
+|> filter(fn: (r) => r._measurement == "apache" and r._field == "%s and r.host == "%s" and r.port = "%s" and r.server = "%s")`;
 
 
 module.exports = {
@@ -139,5 +143,6 @@ module.exports = {
     SYS_Info,
     Network,
     Processes,
-    Postgres
+    Postgres,
+    Apache
 }

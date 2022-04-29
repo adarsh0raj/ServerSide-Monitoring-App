@@ -262,6 +262,18 @@ app.post('/node/postgres', async(req,res) => {
 })
 
 
+app.post('/node/apache', async(req,res) => {
+    query_influx.postgresInfo(req.body)
+    .then(response => {
+        res.status(200).json(response);
+    })
+    .catch(error => {
+        console.log(error)
+        res.status(500).json(error);
+    })
+})
+
+
 app.listen(port, () => {
     console.log(`App running on port ${port}.`)
 })

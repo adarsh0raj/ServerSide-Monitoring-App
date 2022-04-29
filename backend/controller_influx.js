@@ -219,6 +219,34 @@ const postgresInfo = (my_arg) => {
     })
 }
 
+
+const apacheInfo = (my_arg) => {
+    return new Promise(async (res,rej) => {
+        influx.queryRows(util.format(queries.Postgres, my_arg.bucket, my_arg.field, my_arg.host, my_arg.port, my_arg.server), 
+        {
+            next(row, tableMeta) {
+                const o = tableMeta.toObject(row)
+                time_stamp.push(o._time)
+                measure.push(o._value)
+            },
+            error(error) {
+                rej(error)
+                time_stamp = []
+                measure = []
+            },
+            complete() {
+                res({
+                    time: time_stamp,
+                    measure: measure
+                })
+
+                time_stamp = []
+                measure = []
+            }
+        } )
+    })
+}
+
 module.exports = {
     cpuUsage,
     memUsage,
@@ -226,5 +254,6 @@ module.exports = {
     sysInfo,
     networkInfo,
     processInfo,
-    postgresInfo
+    postgresInfo,
+    apacheInfo
 }
