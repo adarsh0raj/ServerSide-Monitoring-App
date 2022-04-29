@@ -13,6 +13,7 @@ import {
   ApexStroke,
   ApexGrid
 } from "ng-apexcharts";
+import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -258,15 +259,15 @@ export class SystemComponent implements OnInit {
     this.http.post<cpu_metric>('http://localhost:3080/node/cpu', {"field":"usage_system", "cpu_no":"cpu-total", "bucket":"system", "host":this.host_name}).subscribe(data => {
       this.cpu_metrics = data;
 
-      this.chartOptions.series[0].data = this.cpu_metrics.measure.slice(-10,-1);
-      this.chartOptions.xaxis.categories = this.cpu_metrics.time.slice(-10,-1).map(x => x.slice(11,19).toString());
+      this.chartOptions.series[0].data = this.cpu_metrics.measure;
+      this.chartOptions.xaxis.categories = this.cpu_metrics.time.map(x => x.slice(11,19).toString());
     });
 
     this.http.post<mem_metric>('http://localhost:3080/node/mem', {"field":"active","bucket":"system", "host":this.host_name}).subscribe(data => {
       this.mem_metrics = data;
 
-      this.chartOptions2.series[0].data = this.mem_metrics.measure.slice(-10,-1);
-      this.chartOptions2.xaxis.categories = this.mem_metrics.time.slice(-10,-1).map(x => x.slice(11,19).toString());
+      this.chartOptions2.series[0].data = this.mem_metrics.measure;
+      this.chartOptions2.xaxis.categories = this.mem_metrics.time.map(x => x.slice(11,19).toString());
 
     });
 
@@ -276,10 +277,22 @@ export class SystemComponent implements OnInit {
       this.http.post<net_metric>('http://localhost:3080/node/net', {"field":"bytes_recv","bucket":"system", "host":this.host_name, "inter_face":"wlo1"}).subscribe(data => {
         this.net_metrics_bytes_recv = data;
 
-        this.chartOptions3.series[0].data = this.net_metrics_bytes_sent.measure.slice(-10,-1);
-        this.chartOptions4.series[0].data = this.net_metrics_bytes_recv.measure.slice(-10,-1);
-        this.chartOptions3.xaxis.categories = this.net_metrics_bytes_sent.time.slice(-10,-1).map(x => x.slice(11,19).toString());
-        this.chartOptions4.xaxis.categories = this.net_metrics_bytes_recv.time.slice(-10,-1).map(x => x.slice(11,19).toString());
+        this.chartOptions3.series[0].data = this.net_metrics_bytes_sent.measure;
+
+        let i = 0;
+        for(i=1; i<this.net_metrics_bytes_sent.measure.length; i++){
+          this.chartOptions3.series[0].data[i] = toInteger(this.chartOptions3.series[0].data[i]) - toInteger(this.chartOptions3.series[0].data[i-1]);
+        }
+        this.chartOptions3.series[0].data[0] = 0;
+        
+        this.chartOptions4.series[0].data = this.net_metrics_bytes_recv.measure;
+        for(i=1; i<this.net_metrics_bytes_sent.measure.length; i++){
+          this.chartOptions4.series[0].data[i] = toInteger(this.chartOptions4.series[0].data[i]) - toInteger(this.chartOptions4.series[0].data[i-1]);
+        }
+        this.chartOptions4.series[0].data[0] = 0;
+
+        this.chartOptions3.xaxis.categories = this.net_metrics_bytes_sent.time.map(x => x.slice(11,19).toString());
+        this.chartOptions4.xaxis.categories = this.net_metrics_bytes_recv.time.map(x => x.slice(11,19).toString());
       });
     });
 
