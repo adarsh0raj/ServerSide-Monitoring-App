@@ -115,10 +115,11 @@ const addNodesToUser = (body) => {
     const {node_id} = body
 
     return new Promise(async (res,rej) => {
-        const add = await pool.query(queries.AddNodesToUser, [username, node_id])
-
-        if(add.error){
-            rej(add.error)
+        try {
+            const add = await pool.query(queries.AddNodesToUser, [username, node_id])
+        }
+        catch(err){
+            rej(err)
         }
         res('Added Successfully')
     })

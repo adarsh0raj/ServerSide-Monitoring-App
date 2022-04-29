@@ -46,7 +46,7 @@ export class SystemComponent implements OnInit {
     chart: {
       height: 400,
       type: "line",
-      width: "90%",
+      width: "80%",
       dropShadow: {
         enabled: true,
         color: "#000",
@@ -99,7 +99,7 @@ export class SystemComponent implements OnInit {
     chart: {
       height: 400,
       type: "line",
-      width: "90%",
+      width: "80%",
       dropShadow: {
         enabled: true,
         color: "#000",
@@ -151,6 +151,7 @@ export class SystemComponent implements OnInit {
       this.chartOptions.series[0].data = this.cpu_metrics.measure.slice(-10,-1);
       this.chartOptions.xaxis.categories = this.cpu_metrics.time.slice(-10,-1).map(x => x.slice(11,19).toString());
 
+      console.log(this.cpu_metrics);
     });
 
     this.http.post<mem_metric>('http://localhost:3080/node/mem', {"field":"active", "host":"system"}).subscribe(data => {
@@ -158,6 +159,8 @@ export class SystemComponent implements OnInit {
 
       this.chartOptions2.series[0].data = this.mem_metrics.measure.slice(-10,-1);
       this.chartOptions2.xaxis.categories = this.mem_metrics.time.slice(-10,-1).map(x => x.slice(11,19).toString());
+
+      console.log(this.mem_metrics);
     });
 
   }
