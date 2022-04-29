@@ -1,4 +1,5 @@
 const Pool = require('pg').Pool
+const util = require('util')
 const pool = new Pool({
   user: 'adarsh',
   host: 'localhost',
@@ -139,15 +140,12 @@ const getNodesFromUser = (body) => {
 
 const delNodesFromUser = (body) => {
     const {username} = body
-    const {node_ids} = body
-
     return new Promise(async (res,rej) => {
-        const del = await pool.query(format(queries.DelNodesFromUser,username, [node_ids]))
+        const del = await pool.query(queries.DeleteNodesFromUser, [username])
 
         if(del.error){
             rej(del.error)
         }
-
         res('Deleted Successfully')
     })
 }

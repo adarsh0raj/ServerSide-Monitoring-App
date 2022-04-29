@@ -3,6 +3,7 @@ import { host } from '../../interfaces/host';
 import { HttpClient } from '@angular/common/http';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { User } from 'src/app/interfaces/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hostselect',
@@ -20,7 +21,7 @@ export class HostselectComponent implements OnInit {
   hosts : host[] = [];
   curruser: User;
 
-  constructor(private http: HttpClient, private auth: AuthenticationService) {
+  constructor(private http: HttpClient, private auth: AuthenticationService, private router: Router) {
     this.auth.currentUser.subscribe(x => this.curruser = x);
   }
 
@@ -44,6 +45,7 @@ export class HostselectComponent implements OnInit {
         console.log(data);
       });
     }
+    this.router.navigate(['/process']);
   }
 
 }

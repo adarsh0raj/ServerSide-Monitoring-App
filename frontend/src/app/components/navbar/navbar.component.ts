@@ -4,6 +4,7 @@ import { Location, LocationStrategy, PathLocationStrategy } from '@angular/commo
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { User } from 'src/app/interfaces/user';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-navbar',
@@ -17,14 +18,15 @@ export class NavbarComponent implements OnInit {
   public user: User;
 
   constructor(location: Location,  private element: ElementRef, private router: Router,
-    private authenticationService: AuthenticationService) {
+    private authenticationService: AuthenticationService, private http: HttpClient) {
+    this.authenticationService.currentUser.subscribe(x => this.user = x);
     this.location = location;
   }
 
   ngOnInit() {
     this.listTitles = ROUTES.filter(listTitle => listTitle);
-    this.authenticationService.currentUser.subscribe(x => this.user = x);
   }
+
   getTitle(){
     var titlee = this.location.prepareExternalUrl(this.location.path());
     if(titlee.charAt(0) === '#'){
@@ -40,6 +42,10 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
+    this.http.post<any>('http://localhost:3080/user/delnode', {"username": this.user.username}).subscribe(data => {
+      console.log(data);
+    });
+
     this.authenticationService.logout();
     this.router.navigate(['/login']);
   }

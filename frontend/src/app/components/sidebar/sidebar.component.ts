@@ -10,14 +10,10 @@ declare interface RouteInfo {
 export const ROUTES: RouteInfo[] = [
     { path: '/home', title: 'Home',  icon: 'ni-shop text-orange', class: '' },
     { path: '/dashboard', title: 'Dashboard',  icon: 'ni-tv-2 text-primary', class: '' },
-    { path: '/icons', title: 'Icons',  icon:'ni-planet text-blue', class: '' },
     { path: '/hostsconfig', title: 'Hosts Configuration',  icon:'ni-pin-3 text-orange', class: '' },
     { path: '/hostselect', title: 'Hosts Selection',  icon:'ni-single-02 text-primary', class: '' },
     { path: '/process', title: 'Process Selection',  icon:'ni-bullet-list-67 text-green', class: '' },
-    { path: '/user-profile', title: 'User profile',  icon:'ni-single-02 text-yellow', class: '' },
-    { path: '/tables', title: 'Tables',  icon:'ni-bullet-list-67 text-red', class: '' },
-    { path: '/login', title: 'Login',  icon:'ni-key-25 text-info', class: '' },
-    { path: '/register', title: 'Register',  icon:'ni-circle-08 text-pink', class: '' }
+    { path: '/system', title: 'System',  icon:'ni-settings text-red', class: '' }
 ];
 
 @Component({

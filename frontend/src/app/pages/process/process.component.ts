@@ -20,6 +20,7 @@ export class ProcessComponent implements OnInit {
 
   ngOnInit() {
     this.http.post<any[]>('http://localhost:3080/user/nodes', {"username": this.curruser.username}).subscribe(data => {
+      console.log(data);
       data.forEach(element => {
         this.selectedHosts.push(
           { node_id: element.node_id, name: element.name, ip: element.ip, new_ip: '', selected: true }

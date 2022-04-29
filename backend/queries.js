@@ -59,7 +59,7 @@ where user_node_access.username = $1 and user_node_access.node_id = nodes.node_i
 
 const DeleteNodesFromUser = `
 delete from user_node_access
-where username = "%s" and node_id in %L;
+where username = $1;
 `;
 
 const AddAppToNode = `
