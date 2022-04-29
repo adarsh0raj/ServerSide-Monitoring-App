@@ -48,7 +48,13 @@ where name = $1;
 
 const AddNodesToUser = `
 insert into user_node_access (username, node_id)
-values %L;
+values ($1, $2);
+`;
+
+const GetNodesFromUser = `
+select node_id
+from user_node_access
+where username = $1;
 `;
 
 const DeleteNodesFromUser = `
@@ -117,6 +123,7 @@ module.exports = {
     AddApplication,
     DeleteApplication,
     AddNodesToUser,
+    GetNodesFromUser,
     DeleteNodesFromUser,
     AddAppToNode,
     DelAppFromNode,

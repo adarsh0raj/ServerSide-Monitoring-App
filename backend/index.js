@@ -112,7 +112,7 @@ app.post('/application/delete', async(req,res) => {
     })
 })
 
-app.post('user/addnode', async(req,res) => {
+app.post('/user/addnode', async(req,res) => {
     query.addNodesToUser(req.body)
     .then(response => {
         res.status(200).json(response);
@@ -123,7 +123,18 @@ app.post('user/addnode', async(req,res) => {
     })
 })
 
-app.post('user/delnode', async(req,res) => {
+app.get('/user/nodes', async(req,res) => {
+    query.getNodesFromUser(req.query.username)
+    .then(response => {
+        res.status(200).json(response);
+    })
+    .catch(error => {
+        console.log(error)
+        res.status(500).json(error);
+    })
+})
+
+app.post('/user/delnode', async(req,res) => {
     query.delNodesFromUser(req.body)
     .then(response => {
         res.status(200).json(response);

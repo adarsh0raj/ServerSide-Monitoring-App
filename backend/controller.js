@@ -112,22 +112,29 @@ const delApplication = (name) => {
 
 const addNodesToUser = (body) => {
     const {username} = body
-    const {node_ids} = body
-    values = []
-    node_ids.forEach(element => {
-        values.append([username, element])
-    });
+    const {node_id} = body
 
     return new Promise(async (res,rej) => {
-        const add = await pool.query(format(queries.AddNodesToUser,values))
+        const add = await pool.query(queries.AddNodesToUser, [username, node_id])
 
         if(add.error){
             rej(add.error)
         }
-
         res('Added Successfully')
     })
 }
+
+const getNodesFromUser = (body) => {
+    const {username} = body
+    return new Promise(async (res,rej) => {
+        const nodes = await pool.query(queries.GetNodesFromUser,[username])
+        if(nodes.error){
+            rej(nodes.error)
+        }
+        res(nodes.rows)
+    })
+}
+
 
 const delNodesFromUser = (body) => {
     const {username} = body
@@ -189,6 +196,7 @@ module.exports = {
     addApplication,
     delApplication,
     addNodesToUser,
+    getNodesFromUser,
     delNodesFromUser,
     addAppToNode,
     delAppFromNode

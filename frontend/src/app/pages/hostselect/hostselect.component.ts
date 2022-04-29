@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { host } from '../../interfaces/host';
 import { HttpClient } from '@angular/common/http';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { User } from 'src/app/interfaces/user';
 
 @Component({
   selector: 'app-hostselect',
@@ -16,8 +18,11 @@ export class HostselectComponent implements OnInit {
   // ];
 
   hosts : host[] = [];
+  curruser: User;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private auth: AuthenticationService) {
+    this.auth.currentUser.subscribe(x => this.curruser = x);
+  }
 
   ngOnInit() {
     this.http.get<any[]>('http://localhost:3080/nodes').subscribe(data => {
@@ -32,7 +37,13 @@ export class HostselectComponent implements OnInit {
 
   selectHosts() {
     let selectedHosts = this.hosts.filter(host => host.selected == true);
-    return selectedHosts;
+    let node_ids = selectedHosts.map(host => host.node_id);
+
+    for (let node of node_ids) {
+      this.http.post('http://localhost:3080/user/addnode', {"username": this.curruser.username, "node_id": node}).subscribe(data => {
+        console.log(data);
+      });
+    }
   }
 
 }

@@ -22,7 +22,7 @@ CREATE TABLE user_node_access(
     node_id int NOT NULL,
     PRIMARY KEY(username, node_id),
     FOREIGN KEY(username) REFERENCES users(username) ON DELETE SET NULL,
-    FOREIGN KEY(node_id) REFERENCES nodes(node_id) ON DELETE SET NULL,
+    FOREIGN KEY(node_id) REFERENCES nodes(node_id) ON DELETE SET NULL
 );
 
 CREATE TABLE application(
