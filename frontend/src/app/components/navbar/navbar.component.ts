@@ -46,6 +46,10 @@ export class NavbarComponent implements OnInit {
       console.log(data);
     });
 
+    this.http.post<any>('http://localhost:3080/node/delapp', {}).subscribe(data => {
+      console.log(data);
+    });
+
     this.authenticationService.logout();
     this.router.navigate(['/login']);
   }

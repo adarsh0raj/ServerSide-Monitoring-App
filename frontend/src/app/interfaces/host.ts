@@ -10,4 +10,12 @@ export interface host_det {
     node_id: number;
     name: string;
     ip: string;
+};
+
+export interface host_app {
+    node_id: number;
+    name: string;
+    ip: string;
+    postgres: boolean;
+    apache: boolean;
 }

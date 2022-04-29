@@ -1,4 +1,4 @@
-<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+<div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
   <div class="container-fluid">
     <div class="header-body">
       <!-- Card stats -->
@@ -58,17 +58,11 @@
                 <td>
                   Default
                 </td>
-                <td>
-                  <div class="custom-control custom-checkbox mb-3">
-                    <input class="custom-control-input" id="customCheck" type="checkbox" checked="">
-                    <label class="custom-control-label" for="customCheck">Checked</label>
-                  </div>
+                <td class="text-right">
+                  <input type="checkbox" class="form-control" style="width: 18px; height: 18px; padding-left:10px;" [(ngModel)]="host.postgres"/>
                 </td>
-                <td>
-                  <div class="custom-control custom-checkbox mb-3">
-                    <input class="custom-control-input" id="customCheck2" type="checkbox" checked="">
-                    <label class="custom-control-label" for="customCheck2">Checked</label>
-                  </div>
+                <td class="text-right">
+                  <input type="checkbox" class="form-control" style="width: 18px; height: 18px; padding-left:10px;" [(ngModel)]="host.apache"/>
                 </td>
               </tr>
             </tbody>
@@ -76,7 +70,7 @@
         </div>
         <div class="card-footer bg-default py-4">
           <div class="btn-wrapper text-center">
-            <a href="javascript:void(0)" class="btn btn-neutral btn-icon">
+            <a (click)="selectProcess()" class="btn btn-neutral btn-icon">
               <span class="btn-inner--icon"><i class="fas fa-curved-next"></i></span>
               <span class="btn-inner--text">Proceed With The Selection</span>
             </a>

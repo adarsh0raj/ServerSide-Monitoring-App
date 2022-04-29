@@ -156,8 +156,19 @@ app.post('/node/addapp', async(req,res) => {
     })
 })
 
+app.post('/node/getapp', async(req,res) => {
+    query.getAppFromNode(req.body)
+    .then(response => {
+        res.status(200).json(response);
+    })
+    .catch(error => {
+        console.log(error)
+        res.status(500).json(error);
+    })
+})
+
 app.post('/node/delapp', async(req,res) => {
-    query.addDelToNode(req.body)
+    query.delAppFromNode(req.body)
     .then(response => {
         res.status(200).json(response);
     })

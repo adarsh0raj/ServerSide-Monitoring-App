@@ -49,3 +49,71 @@
     </div>
   </div>
 </div>
+
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h3 class="mb-0">Analyse Applications</h3>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th style="font-size: medium;" scope="col">System ID</th>
+                <th style="font-size: medium;" scope="col">System Name</th>
+                <th style="font-size: medium;" scope="col">IP Address</th>
+                <th style="font-size: medium;" scope="col">POSTGRES</th>
+                <th style="font-size: medium;" scope="col">APACHE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let host of hosts_data">
+                <td> {{ host.node_id }}</td>
+                <th scope="row">
+                  <div class="media align-items-center">
+                    <div class="media-body">
+                      <span class="mb-0 text-sm">{{ host.name }}</span>
+                    </div>
+                  </div>
+                </th>
+                <td>
+                  {{ host.ip }}
+                </td>
+                <td>
+                  <div *ngIf="host.postgres">
+                    <span class="badge badge-dot mr-4">
+                      <i class="bg-success"></i>
+                      <span class="status">Online</span>
+                    </span>
+                  </div>
+                  <div *ngIf="!host.postgres">
+                    <span class="badge badge-dot mr-4">
+                      <i class="bg-danger"></i>
+                      <span class="status">Offline</span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div *ngIf="host.apache">
+                    <span class="badge badge-dot mr-4">
+                      <i class="bg-success"></i>
+                      <span class="status">Online</span>
+                    </span>
+                  </div>
+                  <div *ngIf="!host.apache">
+                    <span class="badge badge-dot mr-4">
+                      <i class="bg-danger"></i>
+                      <span class="status">Offline</span>
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

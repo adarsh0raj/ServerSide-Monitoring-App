@@ -152,14 +152,10 @@ const delNodesFromUser = (body) => {
 
 const addAppToNode = (body) => {
     const {node_id} = body
-    const {names} = body
-    values = []
-    names.forEach(element => {
-        values.append([node_id, element])
-    })
+    const {name} = body
 
     return new Promise(async (res,rej) => {
-        const add = await pool.query(format(queries.AddAppToNode,values))
+        const add = await pool.query(queries.AddAppToNode, [node_id, name])
 
         if(add.error){
             rej(add.error)
@@ -169,12 +165,21 @@ const addAppToNode = (body) => {
     })
 }
 
-const delAppFromNode = (body) => {
+const getAppFromNode = (body) => {
     const {node_id} = body
-    const {names} = body
+    return new Promise(async (res,rej) => {
+        const apps = await pool.query(queries.GetAppFromNode,[node_id])
+        if(apps.error){
+            rej(apps.error)
+        }
+        res(apps.rows)
+    })
+}
+
+const delAppFromNode = (body) => {
 
     return new Promise(async (res,rej) => {
-        const del = await pool.query(format(queries.DelAppFromNode,node_id, [names]))
+        const del = await pool.query(queries.DelAppFromNode)
 
         if(del.error){
             rej(del.error)
@@ -198,5 +203,6 @@ module.exports = {
     getNodesFromUser,
     delNodesFromUser,
     addAppToNode,
-    delAppFromNode
+    delAppFromNode,
+    getAppFromNode
 }

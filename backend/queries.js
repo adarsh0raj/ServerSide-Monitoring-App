@@ -64,12 +64,17 @@ where username = $1;
 
 const AddAppToNode = `
 insert into node_application (node_id, application_name)
-values %L;
+values ($1, $2);
+`;
+
+const GetAppFromNode = `
+select node_application.application_name
+from node_application, nodes
+where node_application.node_id = $1 and node_application.node_id = nodes.node_id;
 `;
 
 const DelAppFromNode = `
 delete from node_application
-where node_id = %d and application_name in %L;
 `;
 
 
@@ -127,6 +132,7 @@ module.exports = {
     DeleteNodesFromUser,
     AddAppToNode,
     DelAppFromNode,
+    GetAppFromNode,
     CPU_Usage,
     Memory,
     Disk_Usage,
