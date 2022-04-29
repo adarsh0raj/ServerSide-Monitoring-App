@@ -21,9 +21,11 @@ export class AlertsComponent implements OnInit, OnDestroy {
                 switch (message && message.type) {
                     case 'success':
                         message.cssClass = 'alert alert-success';
+                        message.text = 'Success!';
                         break;
                     case 'error':
                         message.cssClass = 'alert alert-danger';
+                        message.text = 'Error!';
                         break;
                 }
 

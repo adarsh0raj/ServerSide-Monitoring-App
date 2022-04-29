@@ -14,8 +14,8 @@ export const ROUTES: RouteInfo[] = [
     { path: '/hostselect', title: 'Hosts Selection',  icon:'ni-single-02 text-primary', class: '' },
     { path: '/process', title: 'Process Selection',  icon:'ni-bullet-list-67 text-green', class: '' },
     { path: '/system', title: 'System',  icon:'ni-settings text-red', class: '' },
-    { path: '/postgres', title: 'Postgres',  icon:'ni-settings text-orange', class: '' },
-    { path: '/apache', title: 'Apache',  icon:'ni-settings text-green', class: '' }
+    { path: '/postgres', title: 'Postgres',  icon:'ni-money-coins text-orange', class: '' },
+    { path: '/apache', title: 'Apache',  icon:'ni-world text-green', class: '' }
 ];
 
 @Component({
