@@ -58,7 +58,7 @@ const cpuUsage = (my_arg) => {
                 res({
                     time: time_stamp,
                     measure: measure,
-                    alerts: new Set(alerts)
+                    alerts: alerts
                 })
 
                 time_stamp = []
@@ -134,7 +134,7 @@ const diskUsage = (my_arg) => {
                 res({
                     time: time_stamp,
                     measure: measure,
-                    alerts: new Set(alerts)
+                    alerts: alerts
                 })
 
                 time_stamp = []
@@ -172,7 +172,7 @@ const sysInfo = (my_arg) => {
                 res({
                     time: time_stamp,
                     measure: measure,
-                    alerts: new Set(alerts)
+                    alerts: alerts
                 })
 
                 time_stamp = []
@@ -210,7 +210,7 @@ const networkInfo = (my_arg) => {
                 res({
                     time: time_stamp,
                     measure: measure,
-                    alerts: new Set(alerts)
+                    alerts: alerts
                 })
 
                 time_stamp = []
@@ -248,7 +248,7 @@ const processInfo = (my_arg) => {
                 res({
                     time: time_stamp,
                     measure: measure,
-                    alerts: new Set(alerts)
+                    alerts: alerts
                 })
 
                 time_stamp = []
@@ -286,7 +286,7 @@ const postgresInfo = (my_arg) => {
                 res({
                     time: time_stamp,
                     measure: measure,
-                    alerts: new Set(alerts)
+                    alerts: alerts
                 })
 
                 time_stamp = []
@@ -325,7 +325,7 @@ const apacheInfo = (my_arg) => {
                 res({
                     time: time_stamp,
                     measure: measure,
-                    alerts: new Set(alerts)
+                    alerts: alerts
                 })
 
                 time_stamp = []

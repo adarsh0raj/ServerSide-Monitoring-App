@@ -283,7 +283,7 @@ export class SystemComponent implements OnInit {
       }
 
 
-      this.http.post<cpu_metric>('http://localhost:3080/node/cpu', {"field":"usage_system", "cpu_no":"cpu-total", "bucket":"system", "host":this.host_name, "threshold":"-1"}).subscribe(data => {
+      this.http.post<cpu_metric>('http://localhost:3080/node/cpu', {"field":"usage_system", "cpu_no":"cpu-total", "bucket":"system", "host":this.host_name, "threshold":"0"}).subscribe(data => {
         this.cpu_metrics = data;
 
         this.chartOptions.series[0].data = this.cpu_metrics.measure;
@@ -305,10 +305,10 @@ export class SystemComponent implements OnInit {
 
       });
 
-      this.http.post<net_metric>('http://localhost:3080/node/net', {"field":"bytes_sent","bucket":"system", "host":this.host_name, "inter_face":this.interface, "threshold":"-1"}).subscribe(data => {
+      this.http.post<net_metric>('http://localhost:3080/node/net', {"field":"bytes_sent","bucket":"system", "host":this.host_name, "inter_face":this.interface, "threshold":"100"}).subscribe(data => {
         this.net_metrics_bytes_sent = data;
 
-        this.http.post<net_metric>('http://localhost:3080/node/net', {"field":"bytes_recv","bucket":"system", "host":this.host_name, "inter_face":this.interface, "threshold":"-1"}).subscribe(data => {
+        this.http.post<net_metric>('http://localhost:3080/node/net', {"field":"bytes_recv","bucket":"system", "host":this.host_name, "inter_face":this.interface, "threshold":"100"}).subscribe(data => {
           this.net_metrics_bytes_recv = data;
 
           this.chartOptions3.series[0].data = this.net_metrics_bytes_sent.measure;
