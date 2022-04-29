@@ -37,6 +37,7 @@ export class ApacheComponent implements OnInit {
 
   host_name : any;
   apache_data: apache_metric;
+  a : Boolean = false;
 
   public chartOptions: ChartOptions = {
     series: [
@@ -104,6 +105,9 @@ export class ApacheComponent implements OnInit {
 
         this.chartOptions.series[0].data = this.apache_data.measure;
 
+        if(this.apache_data.alerts.length > 0) {
+          this.a = true;
+        }
         console.log(this.chartOptions);
 
       });

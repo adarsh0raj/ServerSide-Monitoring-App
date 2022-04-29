@@ -2,20 +2,19 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-xl-3 col-lg-6">
-        
       </div>
     </div>
   </div>
 </div>
 
-<div class="container-fluid mt--7">
+<div class="container-fluid mt--7" style="margin-top: -6rem !important;">
   <div class="row">
     <div class="col-xl-8 mb-5 mb-xl-0">
       <div class="card shadow">
         <div class="card-header bg-transparent">
-          <h3>System Statistics For Host: {{ host_name }}</h3>
-          <p>The measurements of system hardwares were taken for the last 5 minutes, and were plotted against
-            time:
+          <h2>System Statistics For Host: {{ host_name }}</h2>
+          <p>Measurements of system hardwares were taken for the last 5 minutes, and were plotted against
+            time
           </p>
         </div>
       </div>
@@ -45,6 +44,16 @@
           </div>
         </div>
       </div>
+      <div class="col" *ngIf="a_cpu">
+        <div class="card shadow">
+          <div class="card-header border-0">
+            <h3 class="mb-4">Alerts (CPU Usage)</h3>
+          </div>
+            <h5 style="margin-left: 2rem;"  *ngFor="let alert of cpu_metrics.alerts">
+              {{ alert }}
+            </h5>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -69,6 +78,16 @@
               [title]="chartOptions3.title"
             ></apx-chart>
           </div>
+        </div>
+      </div>
+      <div class="col" *ngIf="a_n_s">
+        <div class="card shadow">
+          <div class="card-header border-0">
+            <h3 class="mb-4">Alerts (Network Bytes Sent)</h3>
+          </div>
+            <h5 style="margin-left: 2rem;" *ngFor="let alert of net_metrics_bytes_sent.alerts">
+              {{ alert }}
+            </h5>
         </div>
       </div>
     </div>
@@ -97,6 +116,16 @@
           </div>
         </div>
       </div>
+      <div class="col" *ngIf="a_n_r">
+        <div class="card shadow">
+          <div class="card-header border-0">
+            <h3 class="mb-4">Alerts (Network Bytes Received)</h3>
+          </div>
+            <h5 style="margin-left: 2rem;"  *ngFor="let alert of net_metrics_bytes_recv.alerts">
+              {{ alert }}
+            </h5>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -107,7 +136,7 @@
       <div class="col-xl-8 mb-5 mb-xl-0">
         <div class="card shadow">
           <div class="card-header border-0">
-            <h3 class="mb-4">System Memory Usage</h3>
+            <h3 class="mb-4">System Memory Used Percentage</h3>
           </div>
           <div id="chart" style="margin-left: 80px;">
             <apx-chart
@@ -121,6 +150,16 @@
               [title]="chartOptions2.title"
             ></apx-chart>
           </div>
+        </div>
+      </div>
+      <div class="col" *ngIf="a_mem">
+        <div class="card shadow">
+          <div class="card-header border-0">
+            <h3 class="mb-4">Alerts ( Memory )</h3>
+          </div>
+          <h5 style="margin-left: 2rem;" *ngFor="let alert of mem_metrics.alerts">
+              {{ alert }}
+          </h5>
         </div>
       </div>
     </div>

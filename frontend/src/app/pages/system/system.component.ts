@@ -43,6 +43,16 @@ export class SystemComponent implements OnInit {
   host_name : any;
   interface : string = "";
 
+  // a : Set<string>;
+  // b : Set<string>;
+  // c : Set<string>;
+  // d : Set<string>;
+
+  a_cpu: boolean = false;
+  a_n_r: boolean = false;
+  a_n_s: boolean = false;
+  a_mem: boolean = false;
+
   public chartOptions: ChartOptions = {
     series: [
       {
@@ -277,13 +287,20 @@ export class SystemComponent implements OnInit {
         this.cpu_metrics = data;
 
         this.chartOptions.series[0].data = this.cpu_metrics.measure;
-        // this.chartOptions.xaxis.categories = this.cpu_metrics.time.forEach(x => x.slice(11,19).toString());
+        if(this.cpu_metrics.alerts.length > 0){
+          this.a_cpu = true;
+        }
+        // this.a = new Set(this.cpu_metrics.alerts);
       });
 
-      this.http.post<mem_metric>('http://localhost:3080/node/mem', {"field":"active","bucket":"system", "host":this.host_name, "threshold":"90"}).subscribe(data => {
+      this.http.post<mem_metric>('http://localhost:3080/node/mem', {"field":"used_percent","bucket":"system", "host":this.host_name, "threshold":"10"}).subscribe(data => {
         this.mem_metrics = data;
 
         this.chartOptions2.series[0].data = this.mem_metrics.measure;
+        if(this.mem_metrics.alerts.length > 0){
+          this.a_mem = true;
+        }
+        // this.b = new Set(this.mem_metrics.alerts);
         // this.chartOptions2.xaxis.categories = this.mem_metrics.time.map(x => x.slice(11,19).toString());
 
       });
@@ -295,18 +312,27 @@ export class SystemComponent implements OnInit {
           this.net_metrics_bytes_recv = data;
 
           this.chartOptions3.series[0].data = this.net_metrics_bytes_sent.measure;
-         
           this.chartOptions4.series[0].data = this.net_metrics_bytes_recv.measure;
 
+          if(this.net_metrics_bytes_sent.alerts.length > 0){
+            this.a_n_s = true;
+          }
+          if(this.net_metrics_bytes_recv.alerts.length > 0){
+            this.a_n_r = true;
+          }
+          // this.c = new Set(this.net_metrics_bytes_sent.alerts);
+          // this.d = new Set(this.net_metrics_bytes_recv.alerts);
+          
+          console.log(this.cpu_metrics);
+          console.log(this.mem_metrics);
+          console.log(this.net_metrics_bytes_sent);
+          console.log(this.net_metrics_bytes_recv);
           // this.chartOptions3.xaxis.categories = this.net_metrics_bytes_sent.time.map(x => x.slice(11,19).toString());
           // this.chartOptions4.xaxis.categories = this.net_metrics_bytes_recv.time.map(x => x.slice(11,19).toString());
         });
       });
 
     });
-
-    
-
   }
 
 }

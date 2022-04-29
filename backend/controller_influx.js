@@ -42,7 +42,9 @@ const cpuUsage = (my_arg) => {
 
                 if(Number(my_arg.threshold) != -1) {
                     if(Number(o._value) > Number(my_arg.threshold)) {
-                        alerts.push(`${my_arg.host} is having high CPU usage`)
+                        if(alerts.length == 0) {
+                            alerts.push(`${my_arg.host} is having high CPU usage`);
+                        }
                     }
                 }
             },
@@ -56,7 +58,7 @@ const cpuUsage = (my_arg) => {
                 res({
                     time: time_stamp,
                     measure: measure,
-                    alerts: Set(alerts)
+                    alerts: new Set(alerts)
                 })
 
                 time_stamp = []
@@ -79,7 +81,9 @@ const memUsage = (my_arg) => {
 
                 if(Number(my_arg.threshold) != -1) {
                     if(Number(o._value) > Number(my_arg.threshold)) {
-                        alerts.push(`${my_arg.host} is running out of memory`);
+                        if(alerts.length == 0) {
+                            alerts.push(`${my_arg.host} is running out of memory`);
+                        }
                     }
                 }
             },
@@ -93,7 +97,7 @@ const memUsage = (my_arg) => {
                 res({
                     time: time_stamp,
                     measure: measure,
-                    alerts: Set(alerts)
+                    alerts: alerts,
                 })
                 time_stamp = []
                 measure = []
@@ -114,7 +118,9 @@ const diskUsage = (my_arg) => {
 
                 if(Number(my_arg.threshold) != -1) {
                     if(Number(o._value) > Number(my_arg.threshold)) {
-                        alerts.push(`${my_arg.host} is having high disk usage on ${my_arg.device}`);
+                        if(alerts.length == 0) {
+                            alerts.push(`${my_arg.host} is having high disk usage on ${my_arg.device}`);
+                        }
                     }
                 }
             },
@@ -128,7 +134,7 @@ const diskUsage = (my_arg) => {
                 res({
                     time: time_stamp,
                     measure: measure,
-                    alerts: Set(alerts)
+                    alerts: new Set(alerts)
                 })
 
                 time_stamp = []
@@ -150,7 +156,9 @@ const sysInfo = (my_arg) => {
 
                 if(Number(my_arg.threshold) != -1) {
                     if(Number(o._value) > Number(my_arg.threshold)) {
-                        alerts.push(`${my_arg.host} is having high load on system`)
+                        if(alerts.length == 0) {
+                            alerts.push(`${my_arg.host} is having high load on system`)
+                        }
                     }
                 }
             },
@@ -164,7 +172,7 @@ const sysInfo = (my_arg) => {
                 res({
                     time: time_stamp,
                     measure: measure,
-                    alerts: Set(alerts)
+                    alerts: new Set(alerts)
                 })
 
                 time_stamp = []
@@ -186,7 +194,9 @@ const networkInfo = (my_arg) => {
                 
                 if(Number(my_arg.threshold) != -1) {
                     if(Number(o._value) > Number(my_arg.threshold)) {
-                        alerts.push(`${my_arg.host} is having high network activity on ${my_arg.inter_face}`);
+                        if(alerts.length == 0) {
+                            alerts.push(`${my_arg.host} is having high network activity on ${my_arg.inter_face}`);
+                        }
                     }
                 }
             },
@@ -200,7 +210,7 @@ const networkInfo = (my_arg) => {
                 res({
                     time: time_stamp,
                     measure: measure,
-                    alerts: Set(alerts)
+                    alerts: new Set(alerts)
                 })
 
                 time_stamp = []
@@ -222,7 +232,9 @@ const processInfo = (my_arg) => {
 
                 if(Number(my_arg.threshold) != -1) {
                     if(Number(o._value) > Number(my_arg.threshold)) {
-                        alerts.push(`${my_arg.host} is having high process load`);
+                        if(alerts.length == 0) {
+                            alerts.push(`${my_arg.host} is having high process load`);
+                        }
                     }
                 }
             },
@@ -236,7 +248,7 @@ const processInfo = (my_arg) => {
                 res({
                     time: time_stamp,
                     measure: measure,
-                    alerts: Set(alerts)
+                    alerts: new Set(alerts)
                 })
 
                 time_stamp = []
@@ -258,7 +270,9 @@ const postgresInfo = (my_arg) => {
 
                 if(Number(my_arg.threshold) != -1) {
                     if(Number(o._value) > Number(my_arg.threshold)) {
-                        alerts.push(`${my_arg.host} is having high load on database ${my_arg.db}`)
+                        if(alerts.length == 0) {
+                            alerts.push(`${my_arg.host} is having high load on database ${my_arg.db}`)
+                        } 
                     }
                 }
             },
@@ -272,7 +286,7 @@ const postgresInfo = (my_arg) => {
                 res({
                     time: time_stamp,
                     measure: measure,
-                    alerts: Set(alerts)
+                    alerts: new Set(alerts)
                 })
 
                 time_stamp = []
@@ -295,7 +309,9 @@ const apacheInfo = (my_arg) => {
 
                 if(Number(my_arg.threshold) != -1) {
                     if(Number(o._value) > Number(my_arg.threshold)) {
-                        alerts.push(`${my_arg.host} is having high web server load`)
+                        if(alerts.length == 0) {
+                            alerts.push(`${my_arg.host} is having high web server load`)
+                        }
                     }
                 }
             },
@@ -309,7 +325,7 @@ const apacheInfo = (my_arg) => {
                 res({
                     time: time_stamp,
                     measure: measure,
-                    alerts: Set(alerts)
+                    alerts: new Set(alerts)
                 })
 
                 time_stamp = []

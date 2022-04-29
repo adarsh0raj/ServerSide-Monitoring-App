@@ -38,6 +38,16 @@ export class NavbarComponent implements OnInit {
             return this.listTitles[item].title;
         }
     }
+    if(titlee.includes("system")){
+      return "System";
+    }
+    if(titlee.includes("postgres")) {
+      return "PostgreSQL";
+    }
+    if(titlee.includes("apache")) {
+      return "Apache";
+    }
+    
     return 'Home';
   }
 

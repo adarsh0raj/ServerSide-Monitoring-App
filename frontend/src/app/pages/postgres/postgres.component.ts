@@ -37,6 +37,7 @@ export class PostgresComponent implements OnInit {
 
   host_name : any;
   postgres_data : postgres_metric;
+  p : Boolean =  false;
 
   public chartOptions: ChartOptions = {
     series: [
@@ -104,6 +105,9 @@ export class PostgresComponent implements OnInit {
         console.log(this.postgres_data);
 
         this.chartOptions.series[0].data = this.postgres_data.measure;
+        if(this.postgres_data.alerts.length > 0) {
+          this.p = true;
+        }
 
         console.log(this.chartOptions);
 

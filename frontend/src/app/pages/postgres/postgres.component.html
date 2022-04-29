@@ -8,14 +8,14 @@
   </div>
 </div>
 
-<div class="container-fluid mt--7">
+<div class="container-fluid mt--7"  style="margin-top: -6rem !important;">
   <div class="row">
     <div class="col-xl-8 mb-5 mb-xl-0">
       <div class="card shadow">
         <div class="card-header bg-transparent">
-          <h3>PostgreSQL Server For Host: {{ host_name }}</h3>
-          <p>The measurements of the blocks read/write were taken for the last 5 minutes, and were plotted against
-            time:
+          <h2>PostgreSQL Server For Host: {{ host_name }}</h2>
+          <p>Measurements of the blocks read/write were taken for the last 5 minutes, and were plotted against
+            time
           </p>
         </div>
       </div>
@@ -43,6 +43,16 @@
               [title]="chartOptions.title"
             ></apx-chart>
           </div>
+        </div>
+      </div>
+      <div class="col" *ngIf="p">
+        <div class="card shadow">
+          <div class="card-header border-0">
+            <h3 class="mb-4">Alerts</h3>
+          </div>
+            <h5 style="margin-left: 2rem;" *ngFor="let alert of postgres_data.alerts">
+              {{ alert }}
+            </h5>
         </div>
       </div>
     </div>
