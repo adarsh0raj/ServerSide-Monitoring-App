@@ -14,6 +14,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProcessComponent } from 'src/app/pages/process/process.component';
 import { HomeComponent } from 'src/app/pages/home/home.component';
 import { SystemComponent } from 'src/app/pages/system/system.component';
+import { PostgresComponent } from 'src/app/pages/postgres/postgres.component';
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import { SystemComponent } from 'src/app/pages/system/system.component';
     HostselectComponent,
     ProcessComponent,
     HomeComponent,
-    SystemComponent
+    SystemComponent,
+    PostgresComponent
   ]
 })
 

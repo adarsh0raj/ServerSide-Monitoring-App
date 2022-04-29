@@ -41,6 +41,7 @@ export class DashboardComponent implements OnInit {
               { node_id: element.node_id, name: element.name, ip: element.ip, postgres: false, apache: true }
             )
           }
+          this.hosts_data.sort((a, b) => a.node_id - b.node_id);
         });
       });
       this.hosts.sort((a, b) => a.node_id - b.node_id);

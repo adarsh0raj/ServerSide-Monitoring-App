@@ -85,7 +85,9 @@
                   <div *ngIf="host.postgres">
                     <span class="badge badge-dot mr-4">
                       <i class="bg-success"></i>
-                      <span class="status">Online</span>
+                      <a routerLink="/postgres/{{ host.name }}"  routerLinkActive="active">
+                        <span class="status" style="color: rgb(68, 68, 68);">Online</span>
+                      </a>
                     </span>
                   </div>
                   <div *ngIf="!host.postgres">
@@ -99,7 +101,9 @@
                   <div *ngIf="host.apache">
                     <span class="badge badge-dot mr-4">
                       <i class="bg-success"></i>
-                      <span class="status">Online</span>
+                      <a routerLink="/apache/{{ host.name }}" routerLinkActive="active">
+                        <span class="status" style="color: rgb(68, 68, 68);">Online</span>
+                      </a>
                     </span>
                   </div>
                   <div *ngIf="!host.apache">

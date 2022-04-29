@@ -6,6 +6,7 @@ import { HostselectComponent } from 'src/app/pages/hostselect/hostselect.compone
 import { ProcessComponent } from 'src/app/pages/process/process.component';
 import { HomeComponent } from 'src/app/pages/home/home.component';
 import { SystemComponent } from 'src/app/pages/system/system.component';
+import { PostgresComponent } from 'src/app/pages/postgres/postgres.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'home',           component: HomeComponent },
@@ -13,5 +14,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'system/:id',     component: SystemComponent },
     { path: 'hostsconfig',    component: HostsconfigComponent },
     { path: 'hostselect',     component: HostselectComponent },
-    { path: 'process',        component: ProcessComponent}
+    { path: 'process',        component: ProcessComponent},
+    { path: 'postgres/:id',   component: PostgresComponent},
 ];
