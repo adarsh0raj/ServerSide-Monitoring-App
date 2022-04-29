@@ -123,8 +123,8 @@ app.post('/user/addnode', async(req,res) => {
     })
 })
 
-app.get('/user/nodes', async(req,res) => {
-    query.getNodesFromUser(req.query.username)
+app.post('/user/nodes', async(req,res) => {
+    query.getNodesFromUser(req.body)
     .then(response => {
         res.status(200).json(response);
     })

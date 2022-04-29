@@ -52,9 +52,9 @@ values ($1, $2);
 `;
 
 const GetNodesFromUser = `
-select node_id
-from user_node_access
-where username = $1;
+select nodes.node_id, nodes.name, nodes.ip
+from user_node_access, nodes
+where user_node_access.username = $1 and user_node_access.node_id = nodes.node_id;
 `;
 
 const DeleteNodesFromUser = `
