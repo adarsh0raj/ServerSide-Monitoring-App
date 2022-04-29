@@ -191,6 +191,17 @@ app.post('/node/mem', async(req,res) => {
     })
 })
 
+app.post('/node/net', async(req,res) => {
+    query_influx.networkInfo(req.body)
+    .then(response => {
+        res.status(200).json(response);
+    })
+    .catch(error => {
+        console.log(error)
+        res.status(500).json(error);
+    })
+})
+
 
 app.post('/node/disk', async(req,res) => {
     query_influx.diskUsage(req.body)

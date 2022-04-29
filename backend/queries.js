@@ -97,7 +97,7 @@ const SYS_Info = `from(bucket:"%s")
 const Network = `from(bucket:"%s")
 |> range(start: -5m)
 |> timeShift(duration: 5h30m)
-|> filter(fn: (r) => r._measurement == "net" and r._field == "%s" and r.interface = "%s" and r.host == "%s")`;
+|> filter(fn: (r) => r._measurement == "net" and r._field == "%s" and r.interface == "%s" and r.host == "%s")`;
 
 const Processes = `from(bucket:"%s")
 |> range(start: -5m)

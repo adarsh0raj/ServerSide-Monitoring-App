@@ -55,6 +55,58 @@
       <div class="col">
         <div class="card shadow">
           <div class="card-header border-0">
+            <h3 class="mb-4">System Network Info (Bytes Sent)</h3>
+          </div>
+          <div id="chart" style="margin-left: 80px;">
+            <apx-chart
+              [series]="chartOptions3.series"
+              [chart]="chartOptions3.chart"
+              [xaxis]="chartOptions3.xaxis"
+              [stroke]="chartOptions3.stroke"
+              [dataLabels]="chartOptions3.dataLabels"
+              [grid]="chartOptions3.grid"
+              [yaxis]="chartOptions3.yaxis"
+              [title]="chartOptions3.title"
+            ></apx-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="chart">
+  <div class="container-fluid mt--7" style="margin-top: 0.25rem !important;">
+    <div class="row" style="margin-top:2.5rem;">
+      <div class="col">
+        <div class="card shadow">
+          <div class="card-header border-0">
+            <h3 class="mb-4">System Network Info (Bytes Received)</h3>
+          </div>
+          <div id="chart" style="margin-left: 80px;">
+            <apx-chart
+              [series]="chartOptions4.series"
+              [chart]="chartOptions4.chart"
+              [xaxis]="chartOptions4.xaxis"
+              [stroke]="chartOptions4.stroke"
+              [dataLabels]="chartOptions4.dataLabels"
+              [grid]="chartOptions4.grid"
+              [yaxis]="chartOptions4.yaxis"
+              [title]="chartOptions4.title"
+            ></apx-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="chart">
+  <div class="container-fluid mt--7" style="margin-top: 0.25rem !important;">
+    <div class="row" style="margin-top:2.5rem;">
+      <div class="col">
+        <div class="card shadow">
+          <div class="card-header border-0">
             <h3 class="mb-4">System Memory Usage</h3>
           </div>
           <div id="chart" style="margin-left: 80px;">
