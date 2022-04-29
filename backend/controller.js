@@ -11,8 +11,13 @@ const queries = require('./queries')
 
 const regUser = (username, password) => {
     return new Promise(async (res,rej) => {
-        const reg = await pool.query(queries.RegUser,[username, password])
-
+        try {
+            const reg = await pool.query(queries.RegUser,[username, password])
+        }   
+        catch(err){
+            rej(err)
+        }
+        
         if(reg.error){
             rej(reg.error)
         }
@@ -23,8 +28,13 @@ const regUser = (username, password) => {
 
 const loginUser = (username, password) => {
     return new Promise(async (res,rej) => {
-        const login = await pool.query(queries.LoginUser,[username, password])
-
+        try {
+            const login = await pool.query(queries.LoginUser,[username, password])
+        }
+        catch(err){
+            rej(err)
+        }
+        
         if(login.error || login.rows.length === 0){
             rej(login.error)
         }
@@ -129,7 +139,12 @@ const addNodesToUser = (body) => {
 const getNodesFromUser = (body) => {
     const {username} = body
     return new Promise(async (res,rej) => {
-        const nodes = await pool.query(queries.GetNodesFromUser,[username])
+        try {
+            const nodes = await pool.query(queries.GetNodesFromUser,[username])
+        }
+        catch(err){
+            rej(err)
+        }
         if(nodes.error){
             rej(nodes.error)
         }
@@ -141,7 +156,12 @@ const getNodesFromUser = (body) => {
 const delNodesFromUser = (body) => {
     const {username} = body
     return new Promise(async (res,rej) => {
-        const del = await pool.query(queries.DeleteNodesFromUser, [username])
+        try {
+            const del = await pool.query(queries.DelNodesFromUser,[username])
+        }
+        catch(err){
+            rej(err)
+        }
 
         if(del.error){
             rej(del.error)

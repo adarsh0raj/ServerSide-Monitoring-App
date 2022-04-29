@@ -39,8 +39,8 @@ CREATE TABLE node_application(
 );
 
 INSERT INTO nodes(name, ip) VALUES('raspberrypi', '10.1.12.13');
-INSERT INTO nodes(name, ip) VALUES('paarth-lap', '10.12.14.56');
-INSERT INTO nodes(name, ip) VALUES('sambit-mac', '10.56.0.15');
+INSERT INTO nodes(name, ip) VALUES('DESKTOP-5O3H11B', '10.12.14.56');
+INSERT INTO nodes(name, ip) VALUES('Sambits-MacBook-Pro', '10.56.0.15');
 
 INSERT INTO application(name) VALUES('postgres');
 INSERT INTO application(name) VALUES('apache');
