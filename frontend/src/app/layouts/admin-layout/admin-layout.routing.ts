@@ -13,7 +13,7 @@ import { SystemComponent } from 'src/app/pages/system/system.component';
 export const AdminLayoutRoutes: Routes = [
     { path: 'home',           component: HomeComponent },
     { path: 'dashboard',      component: DashboardComponent },
-    { path: 'system',         component: SystemComponent },
+    { path: 'system/:id',     component: SystemComponent },
     { path: 'user-profile',   component: UserProfileComponent },
     { path: 'tables',         component: TablesComponent },
     { path: 'icons',          component: IconsComponent },
