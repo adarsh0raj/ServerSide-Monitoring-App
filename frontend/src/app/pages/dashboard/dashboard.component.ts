@@ -15,6 +15,8 @@ export class DashboardComponent implements OnInit {
   hosts_data: host_app[] = [];
   curruser : User;
 
+  hosts_data_empty: boolean = true;
+
   constructor(private http: HttpClient, private auth: AuthenticationService) {
     this.auth.currentUser.subscribe(x => this.curruser = x);
   }
@@ -42,6 +44,9 @@ export class DashboardComponent implements OnInit {
             )
           }
           this.hosts_data.sort((a, b) => a.node_id - b.node_id);
+          if (this.hosts_data.length > 0) {
+            this.hosts_data_empty = false;
+          }
         });
       });
       this.hosts.sort((a, b) => a.node_id - b.node_id);
