@@ -15,6 +15,7 @@ import { ProcessComponent } from 'src/app/pages/process/process.component';
 import { HomeComponent } from 'src/app/pages/home/home.component';
 import { SystemComponent } from 'src/app/pages/system/system.component';
 import { PostgresComponent } from 'src/app/pages/postgres/postgres.component';
+import { ApacheComponent } from 'src/app/pages/apache/apache.component';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import { PostgresComponent } from 'src/app/pages/postgres/postgres.component';
     ProcessComponent,
     HomeComponent,
     SystemComponent,
-    PostgresComponent
+    PostgresComponent,
+    ApacheComponent
   ]
 })
 
