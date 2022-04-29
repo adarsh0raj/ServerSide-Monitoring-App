@@ -41,6 +41,7 @@ export class SystemComponent implements OnInit {
   net_metrics_bytes_recv : net_metric;
 
   host_name : any;
+  interface : string = "";
 
   public chartOptions: ChartOptions = {
     series: [
@@ -261,6 +262,17 @@ export class SystemComponent implements OnInit {
       this.host_name = params.get('id');
       console.log(this.host_name);
 
+      if(this.host_name == "ad-lap" || this.host_name == "raspberrypi"){
+        this.interface = "wlo1";
+      }
+      else if(this.host_name == "DESKTOP-5O3H11B"){
+        this.interface = "Wi-Fi";
+      }
+      else if(this.host_name == "Sambits-MacBook-Pro.local"){
+        this.interface = "en0";
+      }
+
+
       this.http.post<cpu_metric>('http://localhost:3080/node/cpu', {"field":"usage_system", "cpu_no":"cpu-total", "bucket":"system", "host":this.host_name}).subscribe(data => {
         this.cpu_metrics = data;
 
@@ -276,10 +288,10 @@ export class SystemComponent implements OnInit {
 
       });
 
-      this.http.post<net_metric>('http://localhost:3080/node/net', {"field":"bytes_sent","bucket":"system", "host":this.host_name, "inter_face":"wlo1"}).subscribe(data => {
+      this.http.post<net_metric>('http://localhost:3080/node/net', {"field":"bytes_sent","bucket":"system", "host":this.host_name, "inter_face":this.interface}).subscribe(data => {
         this.net_metrics_bytes_sent = data;
 
-        this.http.post<net_metric>('http://localhost:3080/node/net', {"field":"bytes_recv","bucket":"system", "host":this.host_name, "inter_face":"wlo1"}).subscribe(data => {
+        this.http.post<net_metric>('http://localhost:3080/node/net', {"field":"bytes_recv","bucket":"system", "host":this.host_name, "inter_face":this.interface}).subscribe(data => {
           this.net_metrics_bytes_recv = data;
 
           this.chartOptions3.series[0].data = this.net_metrics_bytes_sent.measure;
