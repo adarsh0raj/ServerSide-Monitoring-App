@@ -84,9 +84,9 @@ export class SystemComponent implements OnInit {
       }
     },
     xaxis: {
-      categories: [],
+      categories: [10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300],
       title: {
-        text: "Time"
+        text: "Time (in Secs)"
       }
     },
     yaxis: {
@@ -137,9 +137,9 @@ export class SystemComponent implements OnInit {
       }
     },
     xaxis: {
-      categories: [],
+      categories: [10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300],
       title: {
-        text: "Time"
+        text: "Time (in Secs)"
       }
     },
     yaxis: {
@@ -190,9 +190,9 @@ export class SystemComponent implements OnInit {
       }
     },
     xaxis: {
-      categories: [],
+      categories: [10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300],
       title: {
-        text: "Time"
+        text: "Time (in Secs)"
       }
     },
     yaxis: {
@@ -243,9 +243,9 @@ export class SystemComponent implements OnInit {
       }
     },
     xaxis: {
-      categories: [],
+      categories: [10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300],
       title: {
-        text: "Time"
+        text: "Time (in Secs)"
       }
     },
     yaxis: {
@@ -277,14 +277,14 @@ export class SystemComponent implements OnInit {
         this.cpu_metrics = data;
 
         this.chartOptions.series[0].data = this.cpu_metrics.measure;
-        this.chartOptions.xaxis.categories = this.cpu_metrics.time.map(x => x.slice(11,19).toString());
+        // this.chartOptions.xaxis.categories = this.cpu_metrics.time.forEach(x => x.slice(11,19).toString());
       });
 
       this.http.post<mem_metric>('http://localhost:3080/node/mem', {"field":"active","bucket":"system", "host":this.host_name}).subscribe(data => {
         this.mem_metrics = data;
 
         this.chartOptions2.series[0].data = this.mem_metrics.measure;
-        this.chartOptions2.xaxis.categories = this.mem_metrics.time.map(x => x.slice(11,19).toString());
+        // this.chartOptions2.xaxis.categories = this.mem_metrics.time.map(x => x.slice(11,19).toString());
 
       });
 
@@ -298,8 +298,8 @@ export class SystemComponent implements OnInit {
          
           this.chartOptions4.series[0].data = this.net_metrics_bytes_recv.measure;
 
-          this.chartOptions3.xaxis.categories = this.net_metrics_bytes_sent.time.map(x => x.slice(11,19).toString());
-          this.chartOptions4.xaxis.categories = this.net_metrics_bytes_recv.time.map(x => x.slice(11,19).toString());
+          // this.chartOptions3.xaxis.categories = this.net_metrics_bytes_sent.time.map(x => x.slice(11,19).toString());
+          // this.chartOptions4.xaxis.categories = this.net_metrics_bytes_recv.time.map(x => x.slice(11,19).toString());
         });
       });
 

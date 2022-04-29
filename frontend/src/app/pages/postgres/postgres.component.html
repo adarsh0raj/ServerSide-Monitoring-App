@@ -23,3 +23,29 @@
   </div>
 </div>
 
+<div id="chart">
+  <div class="container-fluid mt--7" style="margin-top: 0.25rem !important;">
+    <div class="row" style="margin-top:2.5rem;">
+      <div class="col-xl-8 mb-5 mb-xl-0">
+        <div class="card shadow">
+          <div class="card-header border-0">
+            <h3 class="mb-4">PostgreSQL Blocks Hit Statistics</h3>
+          </div>
+          <div id="chart" style="margin-left: 80px;">
+            <apx-chart
+              [series]="chartOptions.series"
+              [chart]="chartOptions.chart"
+              [xaxis]="chartOptions.xaxis"
+              [stroke]="chartOptions.stroke"
+              [dataLabels]="chartOptions.dataLabels"
+              [grid]="chartOptions.grid"
+              [yaxis]="chartOptions.yaxis"
+              [title]="chartOptions.title"
+            ></apx-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

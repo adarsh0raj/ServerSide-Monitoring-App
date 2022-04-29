@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { host_det, host_app } from 'src/app/interfaces/host';
 import { User } from 'src/app/interfaces/user';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,7 +18,7 @@ export class DashboardComponent implements OnInit {
 
   hosts_data_empty: boolean = true;
 
-  constructor(private http: HttpClient, private auth: AuthenticationService) {
+  constructor(private http: HttpClient, private auth: AuthenticationService, private router: Router) {
     this.auth.currentUser.subscribe(x => this.curruser = x);
   }
 
@@ -51,5 +52,13 @@ export class DashboardComponent implements OnInit {
       });
       this.hosts.sort((a, b) => a.node_id - b.node_id);
     });
+  }
+
+  refresh([routerLink]) {
+    this.router.navigate([routerLink]).then(
+      () => {
+        window.location.reload();
+      }
+    );
   }
 }

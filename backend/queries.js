@@ -57,7 +57,7 @@ from user_node_access, nodes
 where user_node_access.username = $1 and user_node_access.node_id = nodes.node_id;
 `;
 
-const DeleteNodesFromUser = `
+const DelNodesFromUser = `
 delete from user_node_access
 where username = $1;
 `;
@@ -112,13 +112,13 @@ const Processes = `from(bucket:"%s")
 const Postgres = `from(bucket:"%s")
 |> range(start: -5m)
 |> timeShift(duration: 5h30m)
-|> filter(fn: (r) => r._measurement == "postgresql" and r._field == "%s" and r.db = "%s" and r.host == "%s")`;
+|> filter(fn: (r) => r._measurement == "postgresql" and r._field == "%s" and r.db == "%s" and r.host == "%s")`;
 
 
 const Apache = `from(bucket:"%s")
 |> range(start: -5m)
 |> timeShift(duration: 5h30m)
-|> filter(fn: (r) => r._measurement == "apache" and r._field == "%s and r.host == "%s" and r.port = "%s" and r.server = "%s")`;
+|> filter(fn: (r) => r._measurement == "apache" and r._field == "%s and r.host == "%s" and r.port == "%s" and r.server == "%s")`;
 
 
 module.exports = {
@@ -133,7 +133,7 @@ module.exports = {
     DeleteApplication,
     AddNodesToUser,
     GetNodesFromUser,
-    DeleteNodesFromUser,
+    DelNodesFromUser,
     AddAppToNode,
     DelAppFromNode,
     GetAppFromNode,

@@ -13,16 +13,11 @@ const regUser = (username, password) => {
     return new Promise(async (res,rej) => {
         try {
             const reg = await pool.query(queries.RegUser,[username, password])
+            res('Registered Successfully')
         }   
         catch(err){
-            rej(err)
+            rej(err);
         }
-        
-        if(reg.error){
-            rej(reg.error)
-        }
-
-        res('Registered Successfully')
     })
 }
 
@@ -30,18 +25,16 @@ const loginUser = (username, password) => {
     return new Promise(async (res,rej) => {
         try {
             const login = await pool.query(queries.LoginUser,[username, password])
+            if(login.rows.length === 0){
+                rej(login.error)
+            }
+            res({
+                username: login.rows[0].username
+            })
         }
         catch(err){
             rej(err)
         }
-        
-        if(login.error || login.rows.length === 0){
-            rej(login.error)
-        }
-
-        res({
-            username: login.rows[0].username
-        })
     })
 }
 
@@ -128,11 +121,11 @@ const addNodesToUser = (body) => {
     return new Promise(async (res,rej) => {
         try {
             const add = await pool.query(queries.AddNodesToUser, [username, node_id])
+            res('Added Successfully')
         }
         catch(err){
             rej(err)
         }
-        res('Added Successfully')
     })
 }
 
@@ -141,14 +134,12 @@ const getNodesFromUser = (body) => {
     return new Promise(async (res,rej) => {
         try {
             const nodes = await pool.query(queries.GetNodesFromUser,[username])
+            res(nodes.rows)
         }
         catch(err){
             rej(err)
         }
-        if(nodes.error){
-            rej(nodes.error)
-        }
-        res(nodes.rows)
+        
     })
 }
 
@@ -158,15 +149,11 @@ const delNodesFromUser = (body) => {
     return new Promise(async (res,rej) => {
         try {
             const del = await pool.query(queries.DelNodesFromUser,[username])
+            res('Deleted Successfully')
         }
         catch(err){
             rej(err)
         }
-
-        if(del.error){
-            rej(del.error)
-        }
-        res('Deleted Successfully')
     })
 }
 
@@ -175,37 +162,40 @@ const addAppToNode = (body) => {
     const {name} = body
 
     return new Promise(async (res,rej) => {
-        const add = await pool.query(queries.AddAppToNode, [node_id, name])
-
-        if(add.error){
-            rej(add.error)
+        try{
+            const add = await pool.query(queries.AddAppToNode, [node_id, name])
+            res('Added Successfully')
         }
-
-        res('Added Successfully')
+        catch(err){
+            rej(err)
+        }   
     })
 }
 
 const getAppFromNode = (body) => {
     const {node_id} = body
     return new Promise(async (res,rej) => {
-        const apps = await pool.query(queries.GetAppFromNode,[node_id])
-        if(apps.error){
-            rej(apps.error)
+        try {
+            const apps = await pool.query(queries.GetAppFromNode,[node_id])
+            res(apps.rows)
         }
-        res(apps.rows)
+        catch(err){
+            rej(err)
+        }
+        
     })
 }
 
 const delAppFromNode = (body) => {
 
     return new Promise(async (res,rej) => {
-        const del = await pool.query(queries.DelAppFromNode)
-
-        if(del.error){
-            rej(del.error)
+        try {
+            const del = await pool.query(queries.DelAppFromNode)
+            res('Deleted Successfully')
         }
-
-        res('Deleted Successfully')
+        catch(err){
+            rej(err)
+        }
     })
 
 }

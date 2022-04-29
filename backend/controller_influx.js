@@ -222,7 +222,7 @@ const postgresInfo = (my_arg) => {
 
 const apacheInfo = (my_arg) => {
     return new Promise(async (res,rej) => {
-        influx.queryRows(util.format(queries.Postgres, my_arg.bucket, my_arg.field, my_arg.host, my_arg.port, my_arg.server), 
+        influx.queryRows(util.format(queries.Apache, my_arg.bucket, my_arg.field, my_arg.host, my_arg.port, my_arg.server), 
         {
             next(row, tableMeta) {
                 const o = tableMeta.toObject(row)
