@@ -98,7 +98,7 @@ export class ApacheComponent implements OnInit {
       this.host_name = params.get('id');
       console.log(this.host_name)
 
-      this.http.post<apache_metric>('http://localhost:3080/node/apache', {"field":"BytesPerSec", "bucket":"system", "host":this.host_name, "port": "80", "server": "localhost"}).subscribe(data => {
+      this.http.post<apache_metric>('http://localhost:3080/node/apache', {"field":"BytesPerSec", "bucket":"system", "host":this.host_name, "port": "80", "server": "localhost", "threshold":"-1"}).subscribe(data => {
         this.apache_data = data;
         console.log(this.apache_data);
 

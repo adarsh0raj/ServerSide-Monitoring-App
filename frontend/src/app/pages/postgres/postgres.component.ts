@@ -99,7 +99,7 @@ export class PostgresComponent implements OnInit {
       this.host_name = params.get('id');
       console.log(this.host_name)
 
-      this.http.post<postgres_metric>('http://localhost:3080/node/postgres', {"field":"blks_hit", "bucket":"system", "host":this.host_name, "db": "lab3db"}).subscribe(data => {
+      this.http.post<postgres_metric>('http://localhost:3080/node/postgres', {"field":"blks_hit", "bucket":"system", "host":this.host_name, "db": "lab3db", "threshold":"-1"}).subscribe(data => {
         this.postgres_data = data;
         console.log(this.postgres_data);
 
