@@ -28,6 +28,7 @@ const queries = require('./queries')
 
 let time_stamp = []
 let measure = []
+let alerts = []
 
 
 const cpuUsage = (my_arg) => {
@@ -38,20 +39,29 @@ const cpuUsage = (my_arg) => {
                 const o = tableMeta.toObject(row)
                 time_stamp.push(o._time)
                 measure.push(o._value)
+
+                if(Number(my_arg.threshold) != -1) {
+                    if(Number(o._value) > Number(my_arg.threshold)) {
+                        alerts.push(`${my_arg.host} is having high CPU usage`)
+                    }
+                }
             },
             error(error) {
                 rej(error)
                 time_stamp = []
                 measure = []
+                alerts = []
             },
             complete() {
                 res({
                     time: time_stamp,
-                    measure: measure
+                    measure: measure,
+                    alerts: Set(alerts)
                 })
 
                 time_stamp = []
                 measure = []
+                alerts = []
             }
         } )
     })
@@ -66,19 +76,28 @@ const memUsage = (my_arg) => {
                 const o = tableMeta.toObject(row)
                 time_stamp.push(o._time)
                 measure.push(o._value)
+
+                if(Number(my_arg.threshold) != -1) {
+                    if(Number(o._value) > Number(my_arg.threshold)) {
+                        alerts.push(`${my_arg.host} is running out of memory`);
+                    }
+                }
             },
             error(error) {
                 rej(error)
                 time_stamp = []
                 measure = []
+                alerts = []
             },
             complete() {
                 res({
                     time: time_stamp,
-                    measure: measure
+                    measure: measure,
+                    alerts: Set(alerts)
                 })
                 time_stamp = []
                 measure = []
+                alerts = []
             }
         } )
     })
@@ -92,20 +111,29 @@ const diskUsage = (my_arg) => {
                 const o = tableMeta.toObject(row)
                 time_stamp.push(o._time)
                 measure.push(o._value)
+
+                if(Number(my_arg.threshold) != -1) {
+                    if(Number(o._value) > Number(my_arg.threshold)) {
+                        alerts.push(`${my_arg.host} is having high disk usage on ${my_arg.device}`);
+                    }
+                }
             },
             error(error) {
                 rej(error)
                 time_stamp = []
                 measure = []
+                alerts = []
             },
             complete() {
                 res({
                     time: time_stamp,
-                    measure: measure
+                    measure: measure,
+                    alerts: Set(alerts)
                 })
 
                 time_stamp = []
                 measure = []
+                alerts = []
             }
         } )
     })
@@ -119,20 +147,29 @@ const sysInfo = (my_arg) => {
                 const o = tableMeta.toObject(row)
                 time_stamp.push(o._time)
                 measure.push(o._value)
+
+                if(Number(my_arg.threshold) != -1) {
+                    if(Number(o._value) > Number(my_arg.threshold)) {
+                        alerts.push(`${my_arg.host} is having high load on system`)
+                    }
+                }
             },
             error(error) {
                 rej(error)
                 time_stamp = []
                 measure = []
+                alerts = []
             },
             complete() {
                 res({
                     time: time_stamp,
-                    measure: measure
+                    measure: measure,
+                    alerts: Set(alerts)
                 })
 
                 time_stamp = []
                 measure = []
+                alerts = []
             }
         } )
     })
@@ -146,20 +183,29 @@ const networkInfo = (my_arg) => {
                 const o = tableMeta.toObject(row)
                 time_stamp.push(o._time)
                 measure.push(o._value)
+                
+                if(Number(my_arg.threshold) != -1) {
+                    if(Number(o._value) > Number(my_arg.threshold)) {
+                        alerts.push(`${my_arg.host} is having high network activity on ${my_arg.inter_face}`);
+                    }
+                }
             },
             error(error) {
                 rej(error)
                 time_stamp = []
                 measure = []
+                alerts = []
             },
             complete() {
                 res({
                     time: time_stamp,
-                    measure: measure
+                    measure: measure,
+                    alerts: Set(alerts)
                 })
 
                 time_stamp = []
                 measure = []
+                alerts = []
             }
         } )
     })
@@ -173,20 +219,29 @@ const processInfo = (my_arg) => {
                 const o = tableMeta.toObject(row)
                 time_stamp.push(o._time)
                 measure.push(o._value)
+
+                if(Number(my_arg.threshold) != -1) {
+                    if(Number(o._value) > Number(my_arg.threshold)) {
+                        alerts.push(`${my_arg.host} is having high process load`);
+                    }
+                }
             },
             error(error) {
                 rej(error)
                 time_stamp = []
                 measure = []
+                alerts = []
             },
             complete() {
                 res({
                     time: time_stamp,
-                    measure: measure
+                    measure: measure,
+                    alerts: Set(alerts)
                 })
 
                 time_stamp = []
                 measure = []
+                alerts = []
             }
         } )
     })
@@ -200,20 +255,29 @@ const postgresInfo = (my_arg) => {
                 const o = tableMeta.toObject(row)
                 time_stamp.push(o._time)
                 measure.push(o._value)
+
+                if(Number(my_arg.threshold) != -1) {
+                    if(Number(o._value) > Number(my_arg.threshold)) {
+                        alerts.push(`${my_arg.host} is having high load on database ${my_arg.db}`)
+                    }
+                }
             },
             error(error) {
                 rej(error)
                 time_stamp = []
                 measure = []
+                alerts = []
             },
             complete() {
                 res({
                     time: time_stamp,
-                    measure: measure
+                    measure: measure,
+                    alerts: Set(alerts)
                 })
 
                 time_stamp = []
                 measure = []
+                alerts = []
             }
         } )
     })
@@ -228,20 +292,29 @@ const apacheInfo = (my_arg) => {
                 const o = tableMeta.toObject(row)
                 time_stamp.push(o._time)
                 measure.push(o._value)
+
+                if(Number(my_arg.threshold) != -1) {
+                    if(Number(o._value) > Number(my_arg.threshold)) {
+                        alerts.push(`${my_arg.host} is having high web server load`)
+                    }
+                }
             },
             error(error) {
                 rej(error)
                 time_stamp = []
                 measure = []
+                alerts = []
             },
             complete() {
                 res({
                     time: time_stamp,
-                    measure: measure
+                    measure: measure,
+                    alerts: Set(alerts)
                 })
 
                 time_stamp = []
                 measure = []
+                alerts = []
             }
         } )
     })
